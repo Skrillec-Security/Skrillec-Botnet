@@ -21,5 +21,5 @@ import net
 import Server
 
 fn main() {
-	println(" ")
+	println("  ")
 }
