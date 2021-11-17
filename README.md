@@ -9,7 +9,8 @@
 
 ## Install Dependencies
 The compiled version does not need any dependencies installed to use it!
-Make sure to have V installed!! (URL: https://vlang.io)
+
+Make sure to have V installed!! (URL: ``https://vlang.io``)
 ```
 sudo apt install openssl-dev
 ```
