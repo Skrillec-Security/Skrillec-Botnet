@@ -22,7 +22,6 @@ pub fn (mut c Current) handle_cmd(data string) {
 }
 
 pub fn cmd_handler(mut socket net.TcpConn, mut server server.Server) {
-	mut c = Current{}
 	mut reader = io.new_buffered_reader(reader: socket)
 
 	for {
