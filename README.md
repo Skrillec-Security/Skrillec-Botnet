@@ -29,6 +29,7 @@ v run skrillec.v
 Edit the 'config.skrillec' file located in ``skrillec/assets/config.skrillec``
 
 Required Changes
+
 The following fields should not be set to 'None'
 ```
     net_title = "Skrillec"
