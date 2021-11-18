@@ -29,13 +29,13 @@ pub fn (mut s Server) start_skrillec(port int) {
 	for {
 		mut socket := svr.accept() or { panic("[x] Error, Unable to accept the incoming connection!") }
 		socket.set_read_timeout(time.infinite)
-		go s.connection_handler(mut socket)
+		go s.connection_handler(mut socket, mut &start_clients)
 	}
 }
 
-pub fn (mut s Server) connection_handler(mut socket net.TcpConn) {
+pub fn (mut s Server) connection_handler(mut socket net.TcpConn, mut server_s server.Server) {
 	mut user_ip := socket.peer_addr() or { return }
-	server.cmd_handler(mut socket, mut &s)
+	server.cmd_handler(mut socket, mut &server_s)
 }
 
 /*
