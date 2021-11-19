@@ -2,6 +2,8 @@ module server
 
 import os
 import io
+import net
+import server
 
 pub struct Current{
 	pub mut:	
@@ -12,22 +14,23 @@ pub struct Current{
 
 pub fn (mut c Current) handle_cmd(data string) {
 	c.fullcmd = data
-	if " " in data {
+	if data.contains(" ") {
 		c.cmd_args = data.split(" ")
 		c.cmd = c.cmd_args[1][1..]
 	} else {
-		c.cmd_args = data
+		c.cmd_args = data.split(" ")
 		c.cmd = data
 	}
 }
 
 pub fn cmd_handler(mut socket net.TcpConn, mut server server.Server) {
-	mut reader = io.new_buffered_reader(reader: socket)
+	mut reader := io.new_buffered_reader(reader: socket)
 
 	for {
 		mut data := reader.read_line() or { "" }
 		if data.len > 0 {
-			c.handle_cmd(data)
+			// Parse command here with a match statement
+			println(data)
 		}
 	}
 }
