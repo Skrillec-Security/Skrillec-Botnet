@@ -30,7 +30,15 @@ fn main() {
 		if v == "-p" { svr.port = cmd_args[i+1] }
 
 		if v == "reset_config" {
-			// Execute function that'd reset the whole config file to default
+			if cmd_args[i+1] == "-MySQL" {
+				//reset mysql info
+			} else if cmd_args[i+1] == "-localdb" {
+
+			} else if cmd_args[i+1] == "-net_info" {
+
+			} else {
+				// Execute function that'd reset the whole config file to default
+			}
 		}
 	}
 	if svr.port.len == 0 {
