@@ -23,8 +23,7 @@ pub struct Server{
 }
 
 
-pub fn (mut s Server) start_skrillec(port int) {
-	mut start_clients := Clients{}
+pub fn (mut s Server) start_skrillec(port int, mut start_clients server.Server) {
 	mut svr := net.listen_tcp(.ip6, ":$port") or { panic("[x] Error, Unable to bind server. Port is being used!") }
 	for {
 		mut socket := svr.accept() or { panic("[x] Error, Unable to accept the incoming connection!") }
