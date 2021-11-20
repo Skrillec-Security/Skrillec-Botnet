@@ -29,20 +29,23 @@ fn main() {
 	for i, v in cmd_args {
 		if v == "-p" { svr.port = cmd_args[i+1] }
 
-		if v == "reset_config" {
-			if cmd_args[i+1] == "-MySQL" {
+		if v == "-reset_config" {
+			if cmd_args[i+1] == "MySQL" {
 				//reset mysql info
-			} else if cmd_args[i+1] == "-localdb" {
-
-			} else if cmd_args[i+1] == "-net_info" {
-
-			} else {
+			} else if cmd_args[i+1] == "localdb" {
+				//reset local db files
+			} else if cmd_args[i+1] == "net_info" {
+				// reset net_info 
+			} else if cmd_args[i+1] == "-y" {
 				// Execute function that'd reset the whole config file to default
 			}
 		}
+
+		if v == ""
 	}
 	if svr.port.len == 0 {
 		print("[x] Warning. No port was provided. Looking through config file for port.........!")
 		// Execute function to look for PORT in config file
 	}
+	svr.start_skrillec()
 }
