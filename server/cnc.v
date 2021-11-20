@@ -23,18 +23,18 @@ pub struct Server{
 }
 
 
-pub fn (mut s Server) start_skrillec(port int, mut start_clients server.Server) {
+pub fn (mut s Server) start_skrillec() {
 	mut svr := net.listen_tcp(.ip6, ":$port") or { panic("[x] Error, Unable to bind server. Port is being used!") }
 	for {
 		mut socket := svr.accept() or { panic("[x] Error, Unable to accept the incoming connection!") }
 		socket.set_read_timeout(time.infinite)
-		go s.connection_handler(mut socket, mut &start_clients)
+		go s.connection_handler(mut socket)
 	}
 }
 
-pub fn (mut s Server) connection_handler(mut socket net.TcpConn, mut server_s server.Server) {
+pub fn (mut s Server) connection_handler(mut socket net.TcpConn) {
 	mut user_ip := socket.peer_addr() or { return }
-	server.cmd_handler(mut socket, mut &server_s)
+	server.cmd_handler(mut socket, mut &s)
 }
 
 /*
