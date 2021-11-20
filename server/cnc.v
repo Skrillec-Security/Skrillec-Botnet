@@ -19,7 +19,7 @@ pub struct Server{
 	pub mut:
 		port 			string
 		cnc_key 		string
-		// clients			&Clients
+		clients			&Clients
 }
 
 
