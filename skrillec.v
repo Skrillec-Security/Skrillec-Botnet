@@ -22,7 +22,7 @@ import server
 import config
 
 fn main() {
-	mut svr := server.Server{}
+	mut svr := server.Server{clients: &server.Clients{}}
 	
 	// Command Parsing 
 	mut cmd_args := os.args.clone()
