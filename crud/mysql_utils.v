@@ -21,7 +21,7 @@ pub fn get_all_rows(mut s mysql.Connection, table string) {
 	s.connect() or { panic("[x] Error, Failed to connect to MySQL!") exit(0)}
 	table_query := s.query()
 	mut rows := []string
-	for i in table_query.map() {
+	for i in table_query.map('SELECT * FROM ${table}') {
 		rows << "${i},"
 	}
 	rows[rows.len] = rows[rows.len].replace(",", "")
