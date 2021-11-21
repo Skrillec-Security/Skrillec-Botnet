@@ -22,6 +22,8 @@ pub fn get_all_rows(mut s mysql.Connection, table string) {
 	table_query := s.query()
 	mut rows := []string
 	for i in table_query.map() {
-		
+		rows << "${i},"
 	}
+	rows[rows.len] = rows[rows.len].replace(",", "")
+	return rows
 }
