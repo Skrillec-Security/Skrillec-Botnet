@@ -20,6 +20,7 @@ import net
 //Importing SubModules
 import server
 import config
+import skrillec_cp
 
 fn main() {
 	mut svr := server.Server{clients: &server.Clients{}}
@@ -27,7 +28,8 @@ fn main() {
 	// Command Parsing 
 	mut cmd_args := os.args.clone()
 	for i, v in cmd_args {
-		if v == "-p" { svr.port = cmd_args[i+1] }
+		// if v == ""
+		if v == "-p" { svr.set_port(cmd_args[i+1]) }
 
 		if v == "-reset_config" {
 			if cmd_args[i+1] == "MySQL" {
@@ -41,11 +43,13 @@ fn main() {
 			}
 		}
 
-		if v == ""
+		// if v == ""
 	}
 	if svr.port.len == 0 {
-		print("[x] Warning. No port was provided. Looking through config file for port.........!")
+		print("[x] Warning. No port was provided. Looking through config file for port.........!\r\n")
+		exit(0)
 		// Execute function to look for PORT in config file
 	}
-	svr.start_skrillec()
+	go server.start_skrillec(mut &svr)
+	skrillec_cp.main_cp()
 }
