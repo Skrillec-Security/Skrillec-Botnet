@@ -22,5 +22,11 @@ pub fn get_net_info() []string {
 
 pub fn get_db_info() []string {
 	//detect for 'localfiles' structure or 'MySQL' structure in the config file
+	mut file_d := os.read_file(os.getwd() + "/assets/config.skrillec") or { "" }
+	if file_d.contains("MySQL") { // first choice to look for before local db files
+		//get all keys and return em 
+		mut keys := []string
+	}
 	return ["", ""]
+	// this function isnt finished!!
 }
