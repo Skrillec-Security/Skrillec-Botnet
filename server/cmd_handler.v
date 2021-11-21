@@ -4,6 +4,7 @@ import os
 import io
 import net
 import server
+import skrillec_cp
 
 pub struct Current{
 	pub mut:	
@@ -30,7 +31,24 @@ pub fn cmd_handler(mut socket net.TcpConn, mut server server.Server) {
 		mut data := reader.read_line() or { "" }
 		if data.len > 0 {
 			// Parse command here with a match statement
-			println(data)
+			match c.cmd {
+			"cls" {
+             println("TEST CLEAR")
+			}
+			"attack" {
+             println("TEST STRESS")
+			}
+			"help" {
+             println("TEST HELP")
+			}
+			"methods" {
+             println("TEST METHODS")
+			}
+			"passwd" {
+             println("TEST PASSWD")
+			}
+			}
 		}
 	}
+	println(data)
 }
