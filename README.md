@@ -1,6 +1,25 @@
 # Skrillec Botnet
  The New 2022 All-In-One Botnet. Eliminating the process of getting a bunch of botnet related files to start one up. No more hassles!
  
+Picking up the Wocky series. 
+
+## Why did Wocky end? / What happen to Wocky?
+
+V1 was planned and developed with a few slackers. Ended up creating 95% of the net alone. V1 was planned to have the most nesscary features. V2.0.0 was planned to bring a whole new designing system around but ended up being a mess due to the amount of code everywhere. Messy and unorganized.
+
+## Whats coming soon?
+
+Information about the botnet is not to be said until release. Big surprises tho
+The last final NET coming to public soon. This next version will be the All-In-One Botnet that has every file you need including scanning files
+
+## Exclusive features:
+- UI (Layout)
+- Easier Net Branding / Setup
+- an official CLI
+- LIVE Multi-Text Updating
+- Command branding with an Official Interpeted language 
+- Becoming a home, have friends, join chatrooms etc
+
  ## Skrillec Supported OS(s) (DIRECTLY FROM SOURCE)
  The compiled built is supported on any unix platform!
  ```
