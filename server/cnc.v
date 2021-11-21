@@ -51,11 +51,7 @@ pub fn (mut s Server) connection_handler(mut socket net.TcpConn) {
 	mut password := reader.read_line() or { "" }
 	socket.write_string(config.Default) or { 0 } // reset color to default
 	print("New User has logged in! ${username}\r\n")
-	s.clients.u_name << username
-	s.clients.u_sockets <<  (mut socket)
-	s.clients.u_ip << fixed_ip
-	s.clients.u_port << fixed_port.int()
-	s.clients.using_client << false
+	s.clients.new_user(username, mut socket, fixed_ip, fixed_port, false)
 	print(s)
 	///////////////////////////////// Send to command handler after login! ///////////////////////////////////////////
 	server.cmd_handler(mut socket, mut &s, mut &start_current)
@@ -84,6 +80,10 @@ pub fn (mut c Clients) new_user(uname string, mut socket net.TcpConn, ip string,
 	c.u_ip << ip
 	c.u_port << port
 	c.using_client = using_client
+}
+
+pub fn (mut c Clients) remove_user(uname string) {
+	
 }
 
 pub fn (mut c Clients) get_ip(username string) string {
