@@ -47,10 +47,11 @@ pub fn parse(data string, field string, key string) (int, string) {
 	return 0, ""
 }
 
-// pub fn store_fields_and_keys(data string, field string) (int, [][]string) {
-// 	mut keys_in_fields := [][]string
+pub fn grab_all_keys(data string, field string) (int, [][]string) {
+	mut keys_in_fields := [][]string
 
-// }
+	return keys_in_fields
+}
 
 pub fn trim_all_spaces(str string) string {
 	if str.len == 0 { return str }
