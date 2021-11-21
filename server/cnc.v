@@ -22,9 +22,12 @@ pub struct Server{
 		clients			&Clients
 }
 
+pub fn (mut s Server) set_port(port string) {
+	s.port = port
+}
 
-pub fn (mut s Server) start_skrillec() {
-	mut svr := net.listen_tcp(.ip6, ":$port") or { panic("[x] Error, Unable to bind server. Port is being used!") }
+pub fn start_skrillec(mut s Server) {
+	mut svr := net.listen_tcp(.ip6, ":${s.port}") or { panic("[x] Error, Unable to bind server. Port is being used!") }
 	for {
 		mut socket := svr.accept() or { panic("[x] Error, Unable to accept the incoming connection!") }
 		socket.set_read_timeout(time.infinite)
