@@ -51,5 +51,5 @@ fn main() {
 		// Execute function to look for PORT in config file
 	}
 	go server.start_skrillec(mut &svr)
-	skrillec_cp.main_cp(mut conn)
+	skrillec_cp.main_cp()
 }
