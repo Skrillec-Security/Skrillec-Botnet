@@ -19,3 +19,8 @@ pub fn get_net_info() []string {
 
 	return reply
 }
+
+pub fn get_db_info() []string {
+	//detect for 'localfiles' structure or 'MySQL' structure in the config file
+	return ["", ""]
+}
