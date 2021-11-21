@@ -20,4 +20,8 @@ pub fn get_row(mut s mysql.Connection, q string) []string {
 pub fn get_all_rows(mut s mysql.Connection, table string) {
 	s.connect() or { panic("[x] Error, Failed to connect to MySQL!") exit(0)}
 	table_query := s.query()
+	mut rows := []string
+	for i in table_query.map() {
+		
+	}
 }
