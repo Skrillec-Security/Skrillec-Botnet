@@ -52,7 +52,7 @@ pub fn (mut s Server) connection_handler(mut socket net.TcpConn) {
 	socket.write_string(config.Default) or { 0 } // reset color to default
 	print("New User has logged in! ${username}\r\n")
 	s.clients.u_name << username
-	s.clients.u_sockets << socket
+	s.clients.u_sockets <<  (mut socket)
 	s.clients.u_ip << fixed_ip
 	s.clients.u_port << fixed_port.int()
 	s.clients.using_client << false
@@ -76,6 +76,15 @@ pub fn start_skrillec(mut s Server) {
 /*
 	Struct User Lookup Functions
 */
+
+pub fn (mut c Clients) new_user(uname string, mut socket net.TcpConn, ip string, port int, using_client bool) {
+	c.user_count += 1
+	c.u_name << uname
+	c.u_sockets << socket
+	c.u_ip << ip
+	c.u_port << port
+	c.using_client = using_client
+}
 
 pub fn (mut c Clients) get_ip(username string) string {
 	for i in 0..(c.u_sockets).len {
