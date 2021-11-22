@@ -22,10 +22,10 @@ Net_Info {
 }
 DB {
     MySQL {
+        // do not store your mySQL password in this config file!
         host = 127.0.0.1
         port = 3306
         username = root
-        password = Nigger12!
         dbname = skrillec_net
     }
 }
