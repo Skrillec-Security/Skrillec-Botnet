@@ -34,7 +34,7 @@ fn main() {
 		port: info[1].u32(),
 		username: info[2],
 		dbname: info[3]
-	}, current: &server.Current{}}
+	}, current: &server.Current{}, notice: &utils.NotificationSys{}}
 	
 	// Command Parsing 
 	mut cmd_args := os.args.clone()
