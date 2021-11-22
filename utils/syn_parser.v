@@ -1,7 +1,6 @@
 module utils
 
 import os
-import utils
 
 pub struct Parse {
 	pub mut:
