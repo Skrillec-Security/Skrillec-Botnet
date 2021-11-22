@@ -16,14 +16,25 @@
 // Importing Modules
 import os
 import net
+import mysql
 
 //Importing SubModules
+import utils
 import server
 import config
 import skrillec_cp
 
 fn main() {
-	mut svr := server.Server{clients: &server.Clients{}}
+	// do a license check
+	// and a update check
+	//get mySQL info
+	mut info := config.get_db_info()
+	mut svr := server.Server{clients: &server.Clients{}, sqlconn: mysql.Connection{
+		host: info[0],
+		port: info[1].u32(),
+		username: info[2],
+		dbname: info[3]
+	}}
 	
 	// Command Parsing 
 	mut cmd_args := os.args.clone()
@@ -31,12 +42,12 @@ fn main() {
 		// if v == ""
 		if v == "-p" { svr.set_port(cmd_args[i+1]) }
 
+		if v == "-sqlpw" { svr.sqlconn.password = cmd_args[i+1] }
+
 		if v == "-reset_config" {
 			if cmd_args[i+1] == "MySQL" {
 				//reset mysql info
-			} else if cmd_args[i+1] == "localdb" {
-				//reset local db files
-			} else if cmd_args[i+1] == "net_info" {
+			} else if cmd_args[i+1] == "-net_info" {
 				// reset net_info 
 			} else if cmd_args[i+1] == "-y" {
 				// Execute function that'd reset the whole config file to default
@@ -50,6 +61,7 @@ fn main() {
 		exit(0)
 		// Execute function to look for PORT in config file
 	}
+
 	go server.start_skrillec(mut &svr)
 	skrillec_cp.main_cp()
 }
