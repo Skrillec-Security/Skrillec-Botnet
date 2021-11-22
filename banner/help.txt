@@ -1,6 +1,0 @@
-╔════════════╦═════════════════╗
-║ passwd     ║ Change password ║
-║ attack     ║ Do a attack     ║
-║ methods    ║ Shows methods   ║
-║ cls        ║ Clear screen    ║
-╚════════════╩═════════════════╝
