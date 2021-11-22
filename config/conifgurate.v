@@ -26,13 +26,12 @@ pub fn get_db_info() []string {
 	e_code, host := utils.parse(file_d, "MySQL", "host")
 	_, port := utils.parse(file_d, "MySQL", "port")
 	_, username := utils.parse(file_d, "MySQL", "username")
-	_, password := utils.parse(file_d, "MySQL", "password")
 	_, dbname := utils.parse(file_d, "MySQL", "dbname")
 
 	mut reply := []string
+	reply << host
 	reply << port
 	reply << username
-	reply << password
 	reply << dbname
 
 	return reply
