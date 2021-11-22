@@ -50,7 +50,7 @@ pub fn parse(data string, field string, key string) (int, string) {
 pub fn grab_all_keys(data string, field string) (int, [][]string) {
 	mut keys_in_fields := [][]string
 
-	return keys_in_fields
+	return 0, keys_in_fields
 }
 
 pub fn trim_all_spaces(str string) string {
