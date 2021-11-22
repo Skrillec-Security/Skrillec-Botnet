@@ -40,20 +40,20 @@ pub fn cmd_handler(mut socket net.TcpConn, mut svr server.Server, mut c Current)
 			c.handle_cmd(data)
 			// Parse command here with a match statement
 			match c.cmd {
-				"cls" {
-             		socket.write_string("\x1b[2K\r") or { 0 }
+				"home", "clear", "cls", "c" {
+
 				}
-				"attack" {
-             		println("TEST STRESS")
+				"passwd" {
+					
 				}
 				"help" {
-            		println("TEST HELP")
+
 				}
 				"methods" {
              		println("TEST METHODS")
 				}
-				"passwd" {
-            		println("TEST PASSWD")
+				"attack", "stress" {
+             		println("TEST STRESS")
 				} else {
 					socket.write_string("Command not found!\r\n") or { 0 }
 				}
