@@ -29,6 +29,7 @@ pub struct Server{
 		port 			string
 		cnc_key 		string
 		clients			&Clients
+		current			&server.Current
 		sqlconn			mysql.Connection
 }
 
