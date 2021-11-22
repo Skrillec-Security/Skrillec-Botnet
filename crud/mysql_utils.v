@@ -17,11 +17,23 @@ pub fn get_row(mut s mysql.Connection, q string) []string {
 	return row
 }
 
-pub fn get_all_rows(mut s mysql.Connection, table string) {
+/*
+get_all_rows(mysql.Connection{
+	host: ""
+	port: 0
+	username: ""
+	password: ""
+	dbname: ""
+}, "ongoing", "users", "username=root") // this function called here is pulling 'ongoing' value from the username root in MySQL db
+*/
+pub fn get_all_rows(mut s mysql.Connection, selectt string, from string, where string) {
 	s.connect() or { panic("[x] Error, Failed to connect to MySQL!") exit(0)}
-	table_query := s.query()
+	table_query := s.query('SELECT * FROM ${table}')
+	if where.len > 0 {
+		table_query += " WHERE ${where}"
+	}
 	mut rows := []string
-	for i in table_query.map('SELECT * FROM ${table}') {
+	for i in table_query.map() {
 		rows << "${i},"
 	}
 	rows[rows.len] = rows[rows.len].replace(",", "")
