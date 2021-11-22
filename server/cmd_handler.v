@@ -22,9 +22,6 @@ pub fn (mut c Current) handle_cmd(data string) {
 		c.cmd_args = data.split(" ")
 		c.cmd = data
 	}
-	println(c.fullcmd)
-	println(c.cmd)
-	println(c.cmd_args)
 }
 
 pub fn (mut c Current) reset_cmd_data() {
