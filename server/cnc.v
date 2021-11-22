@@ -4,6 +4,7 @@ import os
 import io
 import net
 import time
+import utils
 import mysql
 import config
 import server
@@ -30,6 +31,7 @@ pub struct Server{
 		cnc_key 		string
 		clients			&Clients
 		current			&server.Current
+		notice			&utils.NotificationSys
 		sqlconn			mysql.Connection
 }
 
