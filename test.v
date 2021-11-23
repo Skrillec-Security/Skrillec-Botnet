@@ -16,6 +16,6 @@ fn main() {
 		password: sql_pw,
 		dbname: "skrillec_net"
 	}
-	mut user_info := crud.grab_user_info(sql, "root")
+	mut user_info := crud.grab_user_info(mut sql, "root")
 	println(user_info)
 }
