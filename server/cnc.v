@@ -45,15 +45,16 @@ pub fn (mut s Server) connection_handler(mut socket net.TcpConn) {
 	mut user_ip := socket.peer_addr() or { return }
 	mut fixed_ip := "$user_ip".split("]:")[0].replace("[::ffff:", "")
 	mut fixed_port := "$user_ip".split("]:")[1]
+	utils.change_size(mut socket, 23, 106)
 	print("New User Connected!: ${user_ip}\r\n")
 	mut start_current := server.Current{}
 	//Add login here then log the user's username, IP, and detect if user is using the Skrillec CLIENT to connect
 	/*
 		Login shit here
 	*/
-	socket.write_string("Username: ") or { 0 }
+	socket.write_string("${config.Green}Username: ") or { 0 }
 	mut uname := reader.read_line() or { "" }
-	socket.write_string("Password: ${config.Black}") or { 0 }// Black text when typing password (invisible)
+	socket.write_string("${config.Green}Password: ${config.Black}") or { 0 }// Black text when typing password (invisible)
 	mut pwd := reader.read_line() or { "" }
 	socket.write_string(config.Default) or { 0 } // reset color to default
 	print("New User has logged in! ${uname}\r\n")
@@ -64,6 +65,12 @@ pub fn (mut s Server) connection_handler(mut socket net.TcpConn) {
 	})
 	s.clients.new_user(uname, mut socket, fixed_ip, fixed_port.int(), false)
 	///////////////////////////////// Send to command handler after login! ///////////////////////////////////////////
+	for i in 0..(s.clients.u_name).len {
+		if s.clients.u_name[i] != uname {
+			s.clients.u_sockets[i].write_string("\r\n[+] New user has joined the CNC! ${uname}\r\n") or { 0 }
+		}
+	}
+	utils.output_ui(mut socket, s.clients.get_username(mut socket))
 	server.cmd_handler(mut socket, mut &s, mut &start_current)
 }
 
@@ -100,6 +107,16 @@ pub fn (mut c Clients) get_ip(username string) string {
 	for i in 0..(c.u_sockets).len {
 		if c.u_name[i] == username {
 			ip := c.u_sockets[i].peer_addr() or { panic("[x] Error") }
+			return "$ip"
+		}
+	}
+	return ""
+}
+
+pub fn (mut c Clients) get_username(mut socket net.TcpConn) string {
+	for i in 0..(c.u_sockets).len {
+		if c.u_sockets[i] == socket {
+			ip := c.u_name[i]
 			return "$ip"
 		}
 	}
