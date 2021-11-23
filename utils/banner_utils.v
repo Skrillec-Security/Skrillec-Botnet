@@ -9,7 +9,7 @@ pub struct CurrentLine {
 		line	int
 }
 
-pub fn output_banner(mut socket net.TcpConn) {
+pub fn output_banner(mut socket net.TcpConn, file string) {
 	mut banner_file := os.read_file(os.getwd() + "/banners/${file}.txt") or { "" }
 	mut config_file := os.read_file(os.getwd() + "/assets/config.skrillec") or { "" }
 	_, output_position := utils.parse(config_file, "CNC_Output", "cnc_output_position")
