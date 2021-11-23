@@ -4,6 +4,7 @@ import os
 import io
 import net
 import time
+import auth
 import utils
 import mysql
 import config
@@ -51,12 +52,17 @@ pub fn (mut s Server) connection_handler(mut socket net.TcpConn) {
 		Login shit here
 	*/
 	socket.write_string("Username: ") or { 0 }
-	mut username := reader.read_line() or { "" }
+	mut uname := reader.read_line() or { "" }
 	socket.write_string("Password: ${config.Black}") or { 0 }// Black text when typing password (invisible)
-	mut password := reader.read_line() or { "" }
+	mut pwd := reader.read_line() or { "" }
 	socket.write_string(config.Default) or { 0 } // reset color to default
-	print("New User has logged in! ${username}\r\n")
-	s.clients.new_user(username, mut socket, fixed_ip, fixed_port.int(), false)
+	print("New User has logged in! ${uname}\r\n")
+	auth.login(mut &s.sqlconn, mut socket, auth.CurrentLogin{
+		username: uname
+		password: pwd
+		ip: fixed_ip
+	})
+	s.clients.new_user(uname, mut socket, fixed_ip, fixed_port.int(), false)
 	///////////////////////////////// Send to command handler after login! ///////////////////////////////////////////
 	server.cmd_handler(mut socket, mut &s, mut &start_current)
 }
