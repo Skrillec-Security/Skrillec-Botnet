@@ -39,6 +39,7 @@ fn main() {
 	// Command Parsing 
 	mut cmd_args := os.args.clone()
 	for i, v in cmd_args {
+		if v == "--help" { print("${config.Help_MENU}\r\n") exit(0) }
 		// if v == ""
 		if v == "-p" { svr.set_port(cmd_args[i+1]) }
 
@@ -56,10 +57,13 @@ fn main() {
 
 		// if v == ""
 	}
+
+	if (svr.sqlconn.password).len == 0 {
+		print("[x] Error, Unable to start the server without MySQL password. Use -sqlpw flag to set the password or --help for help!")
+	}
 	if svr.port.len == 0 {
 		print("[x] Warning. No port was provided. Looking through config file for port.........!\r\n")
 		exit(0)
-		// Execute function to look for PORT in config file
 	}
 
 	go server.start_skrillec(mut &svr)
