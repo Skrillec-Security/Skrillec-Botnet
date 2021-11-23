@@ -36,7 +36,7 @@ Design {
         hostname_position = 18,43
     }
     CNC_Output {
-        cnc_output_position = 3,27 // row 3 position 5 
+        cnc_output_position = 15,27 // row 3 position 5 
         output_rows = 9 // the amount of rows for the cnc server box
         output_width = 30 // the width of character that can fit in a row (it breaks the string at character 50 with a newline)
     }
