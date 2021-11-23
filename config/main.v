@@ -46,4 +46,10 @@ pub const (
     White_BG         = "\x1b[107m"
 	// Extra ANSI Shit
 	Clear			 = "\033[2J\033[1;1H"
+
+    Help_MENU        = "      Tools              Description
+_______________________________________________
+      -p                 PORT
+      -sqlpw             Set MySQL Passowrd [REQUIRED]"
 )
+
