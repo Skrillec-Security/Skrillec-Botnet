@@ -40,15 +40,26 @@ pub fn cmd_handler(mut socket net.TcpConn, mut svr server.Server, mut c Current)
 	for {
 		// Grabbing output position for the CNC responses
 		config_f := os.read_file(os.getwd() + "/assets/config.skrillec") or { "" }
+		// Output CNC Information
 		mut _, output_p := utils.parse(config_f, "CNC_Output", "cnc_output_position")
 		output_row := output_p.split(",")[0]
 		output_column := output_p.split(",")[1]
+		/*================================================================================*/
+
+		// Outhost Hostname Information
+		mut _, hostname_p := utils.parse(config_f, "Hostname", "hostname_position")
+		hostname_r := output_p.split(",")[0]
+		hostname_c := output_p.split(",")[1]
+		/*================================================================================*/
+
+		// Command Handling
 		mut data := reader.read_line() or { "" }
-		if data.len > 0 {
-			c.handle_cmd(data)
-			utils.output_ui(mut socket, svr.clients.get_username(mut socket))
-			time.sleep(2*time.second)
+		if data.len > 0 { // Dont do anything if the input doesnt have a character!
+			c.handle_cmd(data) // Configuring CurrentCmd Infomartion
+			utils.output_ui(mut socket, svr.clients.get_username(mut socket)) // Outputs the UI
+			time.sleep(1*time.second) // sleep 2 seconds bc if u use ANSI after socket output then the ASNI can run first even if the code is after the socket output
 			utils.place_text(mut socket, 13, 41, data.replace("\r\n", "")) // Placing 'Last Command'
+			
 			// Parse command here with a match statement
 			match c.cmd {
 				"home", "clear", "cls", "c" {
@@ -71,11 +82,14 @@ pub fn cmd_handler(mut socket net.TcpConn, mut svr server.Server, mut c Current)
 						utils.place_text(mut socket, output_row.int(), output_column.int(), "[x] Error, Invalid argument\r\nUsage: attack <ip> <port> <time> <method>\r\nExample: attack 1.1.1.1 80 30 UDP\r\n")
 					}
 				} else {
+					time.sleep(1*time.second)
 					utils.place_text(mut socket, output_row.int(), output_column.int(), "Command not found!\r\n")
+					utils.place_text(mut socket, hostname_r.int(), hostname_c.int(), "")
 				}
 			}
 			println(data)
-			utils.place_text(mut socket, 18, 43, "")
+			time.sleep(1*time.second)
+			utils.place_text(mut socket, 21, 27, "")
 		}
 	}
 }
