@@ -48,7 +48,7 @@ pub fn cmd_handler(mut socket net.TcpConn, mut svr server.Server, mut c Current)
 			c.handle_cmd(data)
 			utils.output_ui(mut socket, svr.clients.get_username(mut socket))
 			time.sleep(2*time.second)
-			utils.place_text(mut socket, 13, 41, data.replace("\r\n", ""))
+			utils.place_text(mut socket, 13, 41, data.replace("\r\n", "")) // Placing 'Last Command'
 			// Parse command here with a match statement
 			match c.cmd {
 				"home", "clear", "cls", "c" {
@@ -75,6 +75,7 @@ pub fn cmd_handler(mut socket net.TcpConn, mut svr server.Server, mut c Current)
 				}
 			}
 			println(data)
+			utils.place_text(mut socket, 18, 43, "")
 		}
 	}
 }
