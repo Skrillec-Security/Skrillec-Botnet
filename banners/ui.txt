@@ -1,22 +1,22 @@
-╔═══════════════════════╦═══════════════════════════════════════════════════════════╦════════════════════╗
-║        ╔═╗╦╔═         ║ MOTD:                                                     ║                    ║
-║        ╚═╗╠╩╗         ║                                                           ║  [ Online Users ]  ║
-║        ╚═╝╩ ╩         ╠═══════════════════════════════════════════════════════════╣                    ║
-╠═══════════════════════╣ # [ SKRILLEC CHAT ]                                       ║                    ║
-║  Welcome To Skrillec  ║                                                           ║                    ║
+{YELLOW}╔═══════════════════════╦═══════════════════════════════════════════════════════════╦════════════════════╗
+║        {RED}╔═╗╦╔═{YELLOW}         ║ {RED}MOTD:{YELLOW}                                                     ║                    ║
+║        {RED}╚═╗╠╩╗{YELLOW}         ║                                                           ║  [ {RED}Online Users{YELLOW} ]  ║
+║        {RED}╚═╝╩ ╩{YELLOW}         ╠═══════════════════════════════════════════════════════════╣                    ║
+╠═══════════════════════╣ # [ {RED}SKRILLEC CHAT{YELLOW} ]                                       ║                    ║
+║  {RED}Welcome To Skrillec{YELLOW}  ║                                                           ║                    ║
 ║                       ║                                                           ║                    ║
-║ Version: 4.0.0        ║                                                           ║                    ║
-║ Coded In: V           ║                                                           ║                    ║
-║ Creator: Occupied     ║                                                           ║                    ║
-║ https://skrillec.pw/  ╠═══════════════════════════════════════════════════════════╣                    ║
-║                       ║ # [ SKRILLEC CNC ]                                        ║                    ║
-║ Total Users:          ║ Last Command:                                             ║                    ║
-║ Total Attacks:        ║ Response:                                                 ║                    ║
-║ Total APIs:           ║                                                           ║                    ║
+║ {RED}Version: 4.0.0{YELLOW}        ║                                                           ║                    ║
+║ {RED}Coded In: V{YELLOW}           ║                                                           ║                    ║
+║ {RED}Creator: Occupied{YELLOW}     ║                                                           ║                    ║
+║ {RED}https://skrillec.pw/{YELLOW}  ╠═══════════════════════════════════════════════════════════╣                    ║
+║                       ║ # [ {RED}SKRILLEC CNC{YELLOW} ]                                        ║                    ║
+║ {RED}Total Users:{YELLOW}          ║ {RED}Last Command:{YELLOW}                                             ║                    ║
+║ {RED}Total Attacks:{YELLOW}        ║ {RED}Response:{YELLOW}                                                 ║                    ║
+║ {RED}Total APIs:{YELLOW}           ║                                                           ║                    ║
 ║                       ║                                                           ║                    ║
-║ User:                 ║                                                           ║                    ║
-║ Plan:                 ║                                                           ║                    ║
-║ Concurrents:          ║                                                           ║                    ║
-║ Time:                 ╠═══════════════════════════════════════════════════════════╣                    ║
-║ Expiry:               ║                                                           ║                    ║
+║ {RED}User:{YELLOW}                 ║                                                           ║                    ║
+║ {RED}Plan:{YELLOW}                 ║                                                           ║                    ║
+║ {RED}Concurrents:{YELLOW}          ║                                                           ║                    ║
+║ {RED}Time:{YELLOW}                 ╠═══════════════════════════════════════════════════════════╣                    ║
+║ {RED}Expiry:{YELLOW}               ║                                                           ║                    ║
 ╚═══════════════════════╩═══════════════════════════════════════════════════════════╩════════════════════╝
