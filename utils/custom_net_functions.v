@@ -9,6 +9,9 @@ pub fn change_size(mut socket net.TcpConn, r int, c int) {
 }
 
 pub fn place_text(mut socket net.TcpConn, r int, c int, text string) {
+	if text.contains("\n") {
+		//split 
+	}
 	socket.write_string("\033[${r};${c}f${text}") or { 0 }
 }
 
