@@ -33,7 +33,8 @@ Design {
     terminal_size = 19,118
     Hostname {
         hostname = [Skrillec@root]#~ $ 
-        hostname_position = 18,43
+        hostname_position = 21,27
+        cli_cursor = 
     }
     CNC_Output {
         cnc_output_position = 15,27 // row 3 position 5 
