@@ -60,7 +60,9 @@ fn main() {
 
 	if (svr.sqlconn.password).len == 0 {
 		print("[x] Error, Unable to start the server without MySQL password. Use -sqlpw flag to set the password or --help for help!\r\n")
+		exit(0)
 	}
+
 	if svr.port.len == 0 {
 		print("[x] Warning. No port was provided. Looking through config file for port.........!\r\n")
 		exit(0)
