@@ -17,7 +17,7 @@ pub fn output_ui(mut socket net.TcpConn, username string) {
 	_, output_position := utils.parse(config_file, "Hostname", "hostname_position")
 	row := output_position.split(",")[0]
 	column := output_position.split(",")[1]
-	socket.write_string(banner_file.trim_space()) or { 0 }
+	socket.write_string(utils.replace_code(banner_file.trim_space(), username)) or { 0 }
 
 	// for g, i in banner_file.split("\n") {
 	// 	if i.starts_with("place_text(") { continue }
