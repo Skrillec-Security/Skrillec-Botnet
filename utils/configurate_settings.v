@@ -8,3 +8,10 @@ pub fn grab_port() string {
 	_, p := utils.parse(file_d, "Net_Info", "net_port")
 	return p
 }
+
+pub fn grab_cnc_token() string {
+	mut file_d := os.read_file(os.getwd() + "/assets/config.skrillec") or { "" }
+	if file_d.contains("skrillec_key") {} else { return "" }
+	_, token := utils.parse(file_d, "Net_Info", "skrillec_key")
+	return token
+}
