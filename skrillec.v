@@ -3,9 +3,9 @@
 
 	Developers:
 		- Occupied
-		- Awful
-		- Exo
-		- satis
+		- Awful ( DIDNT WORK ON THIS YET STILL )
+		- satis ( NO WORK IN THIS YET )
+		- social
 
 	Since: 
 		11/17/21
@@ -25,8 +25,6 @@ import config
 import skrillec_cp
 
 fn main() {
-	// do a license check
-	// and a update check
 	//get mySQL info
 	mut info := config.get_db_info()
 	mut svr := server.Server{clients: &server.Clients{}, sqlconn: mysql.Connection{
@@ -35,6 +33,8 @@ fn main() {
 		username: info[2],
 		dbname: info[3]
 	}, current: &server.Current{}, notice: &utils.NotificationSys{}}
+	// Update Check. Making sure this is the latest update or it will ask you to update the binary!
+	server.update_check()
 	
 	// Command Parsing 
 	mut cmd_args := os.args.clone()
@@ -57,25 +57,36 @@ fn main() {
 	}
 
 	if svr.cnc_key.len == 0 {
-		print("[x] Error, Unable to start the CNC without a token!")
-		exit(0)
+		println("[x] Error, No token was set! Checking config file for Skrillec License Token")
+		token := utils.grab_cnc_token()
+		if token == "" {
+			println("[x] Error, No CNC Token was found in the config file! You can add the CNC Token to the config file or use '-t' flag to set the token. Use --help for more help!")
+			exit(0)
+		}
+		svr.cnc_key = token
 	}
 
 	if (svr.sqlconn.password).len == 0 { // MySQL password can only be received this way
-		print("[x] Error, Unable to start the server without MySQL password. Use -sqlpw flag to set the password or --help for help!\r\n")
+		println("[x] Error, Unable to start the server without MySQL password. Use -sqlpw flag to set the password or --help for help!")
 		exit(0)
 	}
 
 	if svr.port.len == 0 { // If the port wasnt given on the boot up command then look for port in config file
-		print("[x] Warning. No port was provided. Looking through config file for port.........!\r\n")
+		println("[x] Warning. No port was provided. Looking through config file for port.........!")
 		port := utils.grab_port()
 		if port == "" {
-			print("[x] Error, No port was found in the config file. You can add the port setting to the config file or use '-p' flag to set the port. Use --help for more help!\r\n")
+			println("[x] Error, No port was found in the config file. You can add the port setting to the config file or use '-p' flag to set the port. Use --help for more help!")
 			exit(0)
 		}
 		svr.set_port(port)
 	}
 
+	// License token validation
+	if server.validate_token(mut &svr) == 0 {
+		exit(0)
+	}
+	// Start Server In a Thread (Background)
 	go server.start_skrillec(mut &svr)
+	// Start the CNC CP to control the CNC from server/VPS!
 	skrillec_cp.main_cp()
 } 
