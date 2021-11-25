@@ -1,8 +1,16 @@
-Debian MySQL Installation Tutorial: https://www.digitalocean.com/community/tutorials/how-to-install-the-latest-mysql-on-debian-10
+Install MySQL for user management!
 
-Ubuntu MySQL Installation Tutorial: https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-20-04
+Debian MySQL Installation Tutorial:
+```
+https://www.digitalocean.com/community/tutorials/how-to-install-the-latest-mysql-on-debian-10
+```
+Ubuntu MySQL Installation Tutorial:
+```
+https://www.digitalocean.com/community/tutorials/how-to-install-mysql-on-ubuntu-20-04
+```
 
 While installing MySQL. It should ask to you create or change the PW!
+
 Insert MySQL Data
 
 Start MySQL
