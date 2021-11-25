@@ -1,1 +1,2 @@
 place_text(21,27)=[Skrillec@{USERNAME}]# 
+place_text(2,33)=Welcome to the new boatnet. Join the discord!
