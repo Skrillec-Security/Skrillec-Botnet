@@ -18,6 +18,7 @@ pub struct Server {
 		port 			string
 		cnc_key 		string
 		clients			&Clients
+		bots 			&server.Bots
 		current			&server.Current
 		notice			&utils.NotificationSys
 		sqlconn			mysql.Connection
@@ -36,17 +37,6 @@ pub struct Clients {
 		using_client	[]bool
 }
 
-/*
-Bots struct being called from Server Struct. Do not call this struct anywhere in this source!
-*/
-pub struct Bots { 
-	pub mut:
-		bot_count		int
-		bot_name		[]string
-		bot_ip			[]string
-		bot_port		[]string
-		bot_arch		[]string
-}
 
 pub fn (mut s Server) set_port(port string) {
 	s.port = port
