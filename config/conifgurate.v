@@ -36,3 +36,7 @@ pub fn get_db_info() []string {
 
 	return reply
 }
+
+pub fn config_net_info() {
+	
+}
