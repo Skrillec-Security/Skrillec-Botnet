@@ -57,13 +57,8 @@ fn main() {
 	}
 
 	if svr.cnc_key.len == 0 {
-		println("[x] Error, No token was set! Checking config file for Skrillec License Token")
-		token := utils.grab_cnc_token()
-		if token == "" {
-			println("[x] Error, No CNC Token was found in the config file! You can add the CNC Token to the config file or use '-t' flag to set the token. Use --help for more help!")
-			exit(0)
-		}
-		svr.cnc_key = token
+		println("[x] Error, No token was set!")
+		exit(0)
 	}
 
 	if (svr.sqlconn.password).len == 0 { // MySQL password can only be received this way
@@ -88,5 +83,5 @@ fn main() {
 	// Start Server In a Thread (Background)
 	go server.start_skrillec(mut &svr)
 	// Start the CNC CP to control the CNC from server/VPS!
-	skrillec_cp.main_cp()
+	skrillec_cp.main_cp(mut &svr)
 } 
