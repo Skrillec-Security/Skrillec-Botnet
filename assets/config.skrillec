@@ -40,18 +40,11 @@ Design {
         cnc_output_position = 15,27 // row 3 position 5 
         output_rows = 9 // the amount of rows for the cnc server box
         output_width = 30 // the width of character that can fit in a row (it breaks the string at character 50 with a newline)
+        last_cmd_output = 
     }
     Chatroom_Output {
         chatroom_output_position = 0,0
         output_rows = 0
         output_width = 0
-    }
-    Banners {
-        // This special syntax isnt gonnah be for the official syn syntax format
-        UI = ui.txt [
-            efig.text = ui_text.txt
-        ]
-        help = help.txt, 
-        methods = methods.txt,
     }
 }
