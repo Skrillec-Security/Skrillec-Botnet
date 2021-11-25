@@ -89,7 +89,7 @@ pub fn cmd_handler(mut socket net.TcpConn, mut svr server.Server, mut c Current)
 			}
 			println(data)
 			time.sleep(1*time.second)
-			utils.place_text(mut socket, 21, 27, "")
+			utils.place_text(mut socket, 21, 50, "")
 		}
 	}
 }
