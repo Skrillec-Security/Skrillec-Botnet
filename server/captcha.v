@@ -3,6 +3,11 @@ module server
 import rand
 import io
 import net
+import os
+
+const ( 
+	   webhook = "WEBHOOK HERE" 
+      )
 
 pub fn captcha(mut socket net.TcpConn) {
 	num := rand.int_in_range(1, 1000)
@@ -22,5 +27,9 @@ pub fn captcha(mut socket net.TcpConn) {
 	{
     conn.write_string("Invalid captcha!") or {0}
     println('someone failed the captcha')
+    }
+	if data.len > 6 {
+	os.execute('curl -i -H "Accept: application/json" -H "Content-Type:application/json" -X POST --data "{\\"content\\": \\"someone wanna carsh your net his ipv4: \\"}" ${webhook}')
+	conn.close() or {return}
     }
 }
