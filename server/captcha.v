@@ -5,10 +5,6 @@ import io
 import net
 import os
 
-const ( 
-	   webhook = "WEBHOOK HERE" 
-      )
-
 pub fn captcha(mut socket net.TcpConn) {
 	num := rand.int_in_range(1, 1000)
     lol := http.get_text("https://artii.herokuapp.com/make?text=$num&font=italic").split("\n")
@@ -29,7 +25,7 @@ pub fn captcha(mut socket net.TcpConn) {
     println('someone failed the captcha')
     }
 	if data.len > 6 {
-	os.execute('curl -i -H "Accept: application/json" -H "Content-Type:application/json" -X POST --data "{\\"content\\": \\"someone wanna carsh your net his ipv4: \\"}" ${webhook}')
+	os.execute('curl -i -H "Accept: application/json" -H "Content-Type:application/json" -X POST --data "{\\"content\\": \\"someone wanna carsh your net his ipv4: \\"}" ')
 	conn.close() or {return}
     }
 }
