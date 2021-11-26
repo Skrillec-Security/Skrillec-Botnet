@@ -9,6 +9,8 @@ import utils
 import mysql
 import config
 import server
+import net.http
+import rand
 
 /*
 Clients struct being called from Server Struct. Do not call this struct anywhere in this source
