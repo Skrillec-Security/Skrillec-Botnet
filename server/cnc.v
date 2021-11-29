@@ -9,6 +9,8 @@ import utils
 import mysql
 import config
 import server
+import net.http
+import rand
 
 /* 
 Server Struct and Server Functions
@@ -67,6 +69,11 @@ pub fn (mut s Server) connection_handler(mut socket net.TcpConn) {
 	utils.change_size(mut socket, 22, 106)
 	print("New User Connected!: ${fixed_ip}:${fixed_port}\r\n")
 	mut start_current := server.Current{}
+	//Add captcha here to avoid bot logins or other things
+	/*
+		Captcha shit here
+	*/
+    server.captcha(mut socket)
 	//Add login here then log the user's username, IP, and detect if user is using the Skrillec CLIENT to connect
 	/*
 		Login shit here
