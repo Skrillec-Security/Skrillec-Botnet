@@ -78,7 +78,7 @@ fn main() {
 		svr.set_port(port)
 	}
 
-	if svr.b_port.len == 0 { 
+	if svr.bot_port.len == 0 { 
 		println("[x] Warning. No bot port was provided, use the '-b_port' flag to set a port for the bot or use '--help' for more help!")
 		exit(0)
 	}
