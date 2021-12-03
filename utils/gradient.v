@@ -1,5 +1,19 @@
 module utils
 
+/*
+File Notes: Ignoring lines starting with 'grad' (each found will increase 'grad_c' which will mean find 'grad_<grad_c>'  in file)
+File Exmaple:
+
+grad_1 = [255, 255, 255], [255, 255, 255]
+
+*/
+
+pub struct FileGradient{
+	pub mut:
+		file		string
+		grad_c		int
+}
+
 pub fn gradient(startrgb []int, endrgb []int, text string) string {
 	change_r := endrgb[0] - startrgb[0] / text.len
 	change_g := endrgb[1] - startrgb[1] / text.len
