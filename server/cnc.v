@@ -61,6 +61,10 @@ pub fn (mut s Server) set_port(port string) {
 	s.port = port
 }
 
+pub fn (mut s Server) set_bot_port(port string) {
+	s.bot_port = port
+}
+
 pub fn (mut s Server) connection_handler(mut socket net.TcpConn) {
 	mut reader := io.new_buffered_reader(reader: socket)
 	mut user_ip := socket.peer_addr() or { return }
