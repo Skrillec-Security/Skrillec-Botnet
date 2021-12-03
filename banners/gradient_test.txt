@@ -1,2 +1,9 @@
 grad_1 = [255,0,0], [11,25,222]
 grad_2 = [11,25,222], [253,88,0]
+
+{grad_1}╔════════════╦═════════════════╗{RESET}
+{grad_1}║ {grad_2}passwd     ║ {grad_2}Change password ║
+{grad_1}║ {grad_2}attack     ║ {grad_2}Do a attack     ║
+{grad_1}║ {grad_2}methods    ║ {grad_2}Shows methods   ║
+{grad_1}║ {grad_2}cls        ║ {grad_2}Clear screen    ║
+{grad_1}╚════════════╩═════════════════╝{RESET}
