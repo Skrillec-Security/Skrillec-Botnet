@@ -19,6 +19,11 @@ Net_Info {
     net_versoin = "4.0.0"
     net_port = 555
 }
+Bot_Info {
+    bot_title = ""
+    bot_port = ""
+    bot_version = ""
+}
 DB {
     MySQL {
         // do not store your mySQL password in this config file!
@@ -33,13 +38,14 @@ Design {
     Hostname {
         hostname = [Skrillec@root]#~ $ 
         hostname_position = 21,27
-        cli_cursor = 
+        cli_cursor = 21,46
     }
     CNC_Output {
         cnc_output_position = 15,27 // row 3 position 5 
         output_rows = 9 // the amount of rows for the cnc server box
         output_width = 30 // the width of character that can fit in a row (it breaks the string at character 50 with a newline)
         last_cmd_output = 
+        cmd_response_output = 
     }
     Chatroom_Output {
         chatroom_output_position = 0,0
