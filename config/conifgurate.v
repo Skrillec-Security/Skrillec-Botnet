@@ -24,7 +24,7 @@ pub fn get_net_info() []string {
 pub fn get_db_info() []string {
 	mut file_d := os.read_file(os.getwd() + "/assets/config.skrillec") or { "" }
 	e_code, host := utils.parse(file_d, "MySQL", "host")
-	_, port := utils.parse(file_d, "MySQL", "port")
+	mut _, port := utils.parse(file_d, "MySQL", "port")
 	_, username := utils.parse(file_d, "MySQL", "username")
 	_, dbname := utils.parse(file_d, "MySQL", "dbname")
 
@@ -38,5 +38,5 @@ pub fn get_db_info() []string {
 }
 
 pub fn config_net_info() {
-	
+
 }
