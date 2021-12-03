@@ -30,12 +30,28 @@ pub fn output_ui(mut socket net.TcpConn, username string) {
 
 	for g in txt_file.split("\n") {
 		if g.starts_with("place_text") {
-			mut r := g[11..13]
-			mut c := g[14..16]
+			mut r, c := utils.get_str_between(g, "(", ")")
 			utils.place_text(mut socket, r.int(), c.int(), utils.replace_code(g.split("=")[1].trim_space(), username))
 		}
 	}
 }
+
+pub fn get_str_between(find_str string, start string, end string) (string, string) {
+	mut recording := false
+	mut returning := ''
+	for i in 0..(find_str.len) {
+		mut c := find_str[i].ascii_str()
+		if c == start {
+			recording = true
+		} else if c == end {
+			recording = false
+		} else if recording == true {
+			returning += c
+		}
+	}
+	return returning.split(",")[0], returning.split(",")[1]
+}
+
 
 
 pub fn replace_code(lul string, username string) string {
