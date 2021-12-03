@@ -22,6 +22,7 @@ pub fn login(mut sql mysql.Connection, mut socket net.TcpConn, c CurrentLogin) i
 		socket.write_string("${config.Red}[x] Error, Invalid information provided!....\r\nClosing app....!${config.Default}\r\n") or { 0 }
 		time.sleep(4 * time.second)
 		socket.close() or { return 0 }
+		exit(0)
 		return 0
 	}
 
@@ -33,17 +34,15 @@ pub fn login(mut sql mysql.Connection, mut socket net.TcpConn, c CurrentLogin) i
 			socket.write_string("${config.Red}[x] Error, IP Lock does not match!....\r\n[x] Closing app....${config.Default}\r\n") or { 0 }
 			time.sleep(4 * time.second)
 			socket.close() or { return 0 }
+			exit(0)
 			return 0
 		}
 	} else {
 		socket.write_string("${config.Red}[x] Error, Invalid information provided!....\r\nClosing app....!${config.Default}\r\n") or { 0 }
 		time.sleep(4 * time.second)
 		socket.close() or { return 0 }
+		exit(0)
 		return 0
 	}
 	return 0
-}
-
-pub fn lol() {
-
 }
