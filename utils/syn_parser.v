@@ -10,6 +10,31 @@ pub struct Parse {
 
 }
 
+pub fn parse(data string, field string, key string) string {
+	if data.len == 0 { return "" }
+	mut lines := data.split("\n")
+	mut line_count := 0
+	for line in lines {
+		if (line.starts_with(field) && line.ends_with("{")) || line.contains("${field} {") {
+			mut found := 0
+			mut find_c := line_count+1
+			for {
+				if lines[find_c].contains("{") { return "" }
+				if lines[find_c].contains(key + " =") {
+					mut split_line := lines[find_c].replace("${key} ", "").replace("=", "")
+					if lines[find_c].contains("//") {
+						split_line = split_line.split("/")[0]
+					}
+					return split_line.trim_space()
+				}
+				find_c += 1
+			}
+		}
+		line_count += 1
+	}
+	return ""
+}
+
 /* 
 			QUICK FUNCTION TO USE WITHOUT STRUCT
 ____________________________________________________________________________________________________
@@ -21,7 +46,7 @@ ________________________________________________________________________________
 							field | the field you want to look throught
 							key | the key you want the value of
 */
-pub fn parse(data string, field string, key string) (int, string) {
+pub fn parse_with_checker(data string, field string, key string) (int, string) {
 	if data.len == 0 { return 0,"" }
 	mut lines := data.split("\n")
 	mut line_count := 0
