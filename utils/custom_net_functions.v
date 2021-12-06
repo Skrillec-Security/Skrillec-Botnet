@@ -4,6 +4,10 @@ import os
 import net
 import utils
 
+pub fn change_title(mut socket net.TcpConn, title string) {
+	socket.write_string("\033]0;${title}\007") or { 0 }
+}
+
 pub fn change_size(mut socket net.TcpConn, r int, c int) {
 	socket.write_string("\033[8;${r};${c}t") or { 0 }
 }
