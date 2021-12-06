@@ -68,6 +68,6 @@ pub fn replace_code(lul string, username string) string {
 	g = g.replace("{WHITE}", "\x1b[97m")
 	g = g.replace("{RESET}", "\x1b[39m")
 	g = g.replace("{USERNAME}", username)
-	g = g.replace("{GRADIENT}", utils.get_gradient())
+	// g = g.replace("{GRADIENT}", utils.get_gradient())
 	return g
 }
