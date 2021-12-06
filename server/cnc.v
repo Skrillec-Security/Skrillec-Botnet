@@ -70,7 +70,7 @@ pub fn (mut s Server) connection_handler(mut socket net.TcpConn) {
 	mut user_ip := socket.peer_addr() or { return }
 	mut fixed_ip := "$user_ip".split("]:")[0].replace("[::ffff:", "")
 	mut fixed_port := "$user_ip".split("]:")[1]
-	utils.change_size(mut socket, 22, 106)
+	utils.change_title(mut socket, "Official Skrillec NET | Under **Development**")
 	print("New User Connected!: ${fixed_ip}:${fixed_port}\r\n")
 	mut start_current := server.Current{}
 	//Add captcha here to avoid bot logins or other things
@@ -82,9 +82,11 @@ pub fn (mut s Server) connection_handler(mut socket net.TcpConn) {
 	/*
 		Login shit here
 	*/
-	socket.write_string("${config.Green}Username: ") or { 0 }
+	utils.output_login(mut socket)
+	utils.move_cursor(mut socket, 10, 18)
 	mut uname := reader.read_line() or { "" }
-	socket.write_string("${config.Green}Password: ${config.Black}") or { 0 }// Black text when typing password (invisible)
+	utils.move_cursor(mut socket, 13, 18)
+	socket.write_string("${config.Black}") or { 0 } // Black text when typing password (invisible)
 	mut pwd := reader.read_line() or { "" }
 	socket.write_string(config.Default) or { 0 } // reset color to default
 	print("New User has logged in! ${uname}\r\n")
@@ -100,7 +102,7 @@ pub fn (mut s Server) connection_handler(mut socket net.TcpConn) {
 			s.clients.u_sockets[i].write_string("\r\n[+] New user has joined the CNC! ${uname}\r\n") or { 0 }
 		}
 	}
-	utils.output_ui(mut socket, s.clients.get_username(mut socket))
+	utils.output_ui(mut socket, "")
 	server.cmd_handler(mut socket, mut &s, mut &start_current)
 }
 
