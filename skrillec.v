@@ -3,8 +3,6 @@
 
 	Developers:
 		- Occupied
-		- Awful ( DIDNT WORK ON THIS YET STILL )
-		- satis ( NO WORK IN THIS YET )
 		- social
 
 	Since: 
