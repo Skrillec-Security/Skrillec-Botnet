@@ -2,6 +2,7 @@ module utils
 
 import os
 import net
+import time
 import utils
 
 pub struct CurrentLine {
@@ -9,20 +10,19 @@ pub struct CurrentLine {
 		line	int
 }
 
-pub fn file_reader(path string) string {
+pub fn file_reader(file string) string {
 	return os.read_file(os.getwd() + "/banners/${file}.txt") or {
 		""
 	}
 }
 
 pub fn output_ui(mut socket net.TcpConn, username string) {
+	utils.change_size(mut socket, 22, 106)
+	time.sleep(500*time.millisecond)
 	socket.write_string("\033[2J\033[1;1H") or { 0 }
 	mut banner_file := os.read_file(os.getwd() + "/banners/ui.txt") or { "" }
 	mut txt_file := os.read_file(os.getwd() + "/banners/ui_text.txt") or { "" }
 	mut config_file := os.read_file(os.getwd() + "/assets/config.skrillec") or { "" }
-	_, output_position := utils.parse(config_file, "Hostname", "hostname_position")
-	row := output_position.split(",")[0]
-	column := output_position.split(",")[1]
 	socket.write_string(utils.replace_code(banner_file.trim_space(), username)) or { 0 }
 
 	// for g, i in banner_file.split("\n") {
@@ -40,11 +40,13 @@ pub fn output_ui(mut socket net.TcpConn, username string) {
 			utils.place_text(mut socket, r.int(), c.int(), utils.replace_code(g.split("=")[1].trim_space(), username))
 		}
 	}
+	// utils.move_cursor(mut socket, )
 }
 
 pub fn output_login(mut socket net.TcpConn) {
+	utils.change_size(mut socket, 16, 61)
 	socket.write_string("\033[2J\033[1;1H") or { 0 }
-	socket.write_string(utils.replace_code(utils.file_reader("login"))) or { 0 }
+	socket.write_string(utils.replace_code(utils.file_reader("login"), "")) or { 0 }
 }
 
 pub fn get_str_between(find_str string, start string, end string) (string, string) {
