@@ -9,6 +9,12 @@ pub struct CurrentLine {
 		line	int
 }
 
+pub fn file_reader(path string) string {
+	return os.read_file(os.getwd() + "/banners/${file}.txt") or {
+		""
+	}
+}
+
 pub fn output_ui(mut socket net.TcpConn, username string) {
 	socket.write_string("\033[2J\033[1;1H") or { 0 }
 	mut banner_file := os.read_file(os.getwd() + "/banners/ui.txt") or { "" }
@@ -34,6 +40,11 @@ pub fn output_ui(mut socket net.TcpConn, username string) {
 			utils.place_text(mut socket, r.int(), c.int(), utils.replace_code(g.split("=")[1].trim_space(), username))
 		}
 	}
+}
+
+pub fn output_login(mut socket net.TcpConn) {
+	socket.write_string("\033[2J\033[1;1H") or { 0 }
+	socket.write_string(utils.replace_code(utils.file_reader("login"))) or { 0 }
 }
 
 pub fn get_str_between(find_str string, start string, end string) (string, string) {
