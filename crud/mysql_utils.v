@@ -29,7 +29,9 @@ pub fn grab_user_info(mut s mysql.Connection, user string) []string {
 }
 
 /*
-
+        method ->               row_counter(s mysql.Connection, table string)
+        return type ->          exit_code(int), row_count(int)
+        note ->                 exit_code is 0 if the table wasnt found!
 */
 pub fn row_counter(mut s mysql.Connection, table string) (int, int) {
         s.connect() or { return 0, 0 }
