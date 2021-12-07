@@ -25,6 +25,7 @@ pub struct Server {
 		bots 			&Bots
 		current			&server.Current
 		notice			&utils.NotificationSys
+		parser			&utils.Parse
 		sqlconn			mysql.Connection
 }
 
