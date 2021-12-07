@@ -5,6 +5,8 @@ import os
 pub struct Parse {
 	pub mut:
 		file			string
+		field			string
+		key				string
 		parsed_data		string	
 		parsed_data_arr	[]string
 
