@@ -2,9 +2,32 @@ module config
 
 pub struct AppInfo{
 	pub mut:
-		title		string = "Skrillec Botnet"
-		description	string = "The New 2022 All-In-One Botnet. Eliminating the hassle of looking for all botnet related files to start one up!"
-		version		string = "4.00"
+		title		            string = "Skrillec Botnet"
+		description	            string = "The New 2022 All-In-One Botnet. Eliminating the hassle of looking for all botnet related files to start one up!"
+		version		            string = "4.00"
+}
+
+pub struct HostnameSettings{
+    pub mut:
+        hostname                string
+        hostname_p              string
+        cli_cursor              string
+}
+
+pub struct Cnc_Ouput {
+    pub mut:
+        cnc_output_position     string
+        output_rows             string
+        output_wdith            string
+        last_cmd_output         string
+        cmd_response_output     string
+}
+
+pub struct Chat_Output {
+    pub mut:
+        chatroom_output_p       string
+        output_rows             string
+        output_width            string
 }
 
 pub const (
