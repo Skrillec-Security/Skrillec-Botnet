@@ -6,6 +6,7 @@ import utils
 pub fn settings_checker() int {
 	//check for the settings file!
 	// return 1 if its there
+	return 0
 }
 
 pub fn grab_port() string {
@@ -23,5 +24,5 @@ pub fn grab_cnc_token() string {
 
 // Returning the amount of keys found in the structure field!
 pub fn hostname_settings() (int, []string) {
-	
+	return 0, ["", ""]
 }
