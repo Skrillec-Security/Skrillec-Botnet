@@ -9,6 +9,12 @@ pub fn settings_checker() int {
 	return 0
 }
 
+pub fn skrillec_config() string {
+	return os.read_file(os.getwd() + "/assets/config.skrillec") or {
+		""
+	}
+}
+
 pub fn grab_port() string {
 	mut file_d := os.read_file(os.getwd() + "/assets/config.skrillec") or { "" }
 	p := utils.parse(file_d, "Net_Info", "net_port")
