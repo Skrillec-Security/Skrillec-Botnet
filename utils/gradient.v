@@ -42,9 +42,11 @@ pub fn gradient(startrgb []string, endrgb []string, text string) string {
 		print("\x1b[38;2;${r};${g};${b}m${letter}")
 		grad_text += "\x1b[38;2;${r};${g};${b}m${letter}"
 
+		print(" | RGB Colors: [${r},${g},${b}] | ")
 		r += change_r
 		g += change_g
 		b += change_b
+		print("[${r},${g},${b}]\r\n")
 	}
 
 	return grad_text + "\x1b[39m"
@@ -60,20 +62,20 @@ pub fn gradiennt(startrgb []int, endrgb []int, text string) string {
 	mut b := startrgb[2]
 
 	mut grad_text := ""
-	for i in 0..((text).len+2) {
-		letter := text[i].ascii_str()
-		if i > 2 {
-			if letter == "\n" { 
-				grad_text += "\n"
-				continue 
-			}
-			print("\x1b[38;2;${r};${g};${b}m${letter}")
-			grad_text += "\x1b[38;2;${r};${g};${b}m${letter}"
-
-			r += change_r
-			g += change_g
-			b += change_b
+	for f in text {
+		letter := f.ascii_str()
+		if letter == "\n" { 
+			grad_text += "\n"
+			continue 
 		}
+		print("\x1b[38;2;${r};${g};${b}m${letter}")
+		grad_text += "\x1b[38;2;${r};${g};${b}m${letter}"
+		print(" | RGB Colors: [${r},${g},${b}] | ")
+		r += change_r
+		g += change_g
+		b += change_b
+		print("[${r},${g},${b}]\r\n")
+
 	}
 
 	return grad_text + "\x1b[39m"
