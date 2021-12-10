@@ -23,8 +23,6 @@ import config
 import skrillec_cp
 
 fn main() {
-	println(utils.gradiennt([255,0,0], [11,25,222], "testing gdfg"))
-	/*
 	//get mySQL info
 	mut info := config.get_db_info()
 	mut svr := server.Server{clients: &server.Clients{}, sqlconn: mysql.Connection{
@@ -92,5 +90,5 @@ fn main() {
 	go server.start_skrillec(mut &svr)
 	// Start the CNC CP to control the CNC from server/VPS!
 	skrillec_cp.main_cp()
-	*/
+	
 } 
