@@ -3,7 +3,9 @@ module utils
 import os
 import net
 import time
+import crud
 import utils
+import mysql
 
 pub struct CurrentLine {
 	pub mut:
@@ -102,6 +104,17 @@ pub fn replace_code(lul string, username string) string {
 	g = g.replace("{WHITE}", "\x1b[97m")
 	g = g.replace("{RESET}", "\x1b[39m")
 	g = g.replace("{USERNAME}", username)
+	if lul.contains("{TOTALUSERS}") {
+		mut sql := mysql.Connection{
+			host: utils.parse(utils.skrillec_config(), "MySQL", "host"),
+			port: utils.parse(utils.skrillec_config(), "MySQL", "port").u32(),
+			username: utils.parse(utils.skrillec_config(), "MySQL", "username"),
+			password: utils.parse(utils.skrillec_config(), "MySQL", "password"),
+			dbname: utils.parse(utils.skrillec_config(), "MySQL", "dbname"),
+		}
+		exit_c, table_c := crud.row_counter(mut sql, "users")
+		g = g.replace("{TOTALUSERS}", table_c.str())
+	}
 	// g = g.replace("{GRADIENT}", utils.get_gradient())
 	return g
 }
