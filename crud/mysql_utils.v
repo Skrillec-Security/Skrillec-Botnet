@@ -28,6 +28,14 @@ pub fn grab_user_info(mut s mysql.Connection, user string) []string {
         return row
 }
 
+pub fn grab_user(mut s mysql.Connection, user string) map {
+        s.connect() or { panic("[x] Error, Failed to connect to MySQL!") }
+        q_resp := s.query('SELECT * FROM users WHERE username=\'${user}\'') or { panic("Unable to send query to MySQL!") }
+        q_resp.free()
+        s.close()
+        return q_resp.maps()
+}
+
 /*
         method ->               row_counter(s mysql.Connection, table string)
         return type ->          exit_code(int), row_count(int)
