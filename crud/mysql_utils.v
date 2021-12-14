@@ -28,7 +28,7 @@ pub fn grab_user_info(mut s mysql.Connection, user string) []string {
         return row
 }
 
-pub fn grab_user(mut s mysql.Connection, user string) map {
+pub fn grab_user(mut s mysql.Connection, user string) []map[string]string {
         s.connect() or { panic("[x] Error, Failed to connect to MySQL!") }
         q_resp := s.query('SELECT * FROM users WHERE username=\'${user}\'') or { panic("Unable to send query to MySQL!") }
         q_resp.free()
