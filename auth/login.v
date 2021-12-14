@@ -26,7 +26,7 @@ pub fn login(mut sql mysql.Connection, mut socket net.TcpConn, c CurrentLogin) i
 	}
 
 	if get_info[0] == c.username.str().replace("\r\n", "") && get_info[2] == sha1.hexhash(c.password.replace("\r\n", "")) {
-		if get_info[1] == c.ip || c.ip == "none" || c.username.str().replace("\r\n", "") == "root" {
+		if get_info[1] == c.ip || get_info[1] == "none" || c.username.str().replace("\r\n", "") == "root" {
 			socket.write_string("${config.Green}[x] Welcome ${c.username} to Skrillec NET!${config.Green}\r\n") or { 0 }
 			return 1
 		} else {
