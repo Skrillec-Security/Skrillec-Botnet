@@ -109,7 +109,7 @@ pub fn replace_code(lul string, username string) string {
 			host: utils.parse(utils.skrillec_config(), "MySQL", "host"),
 			port: utils.parse(utils.skrillec_config(), "MySQL", "port").u32(),
 			username: utils.parse(utils.skrillec_config(), "MySQL", "username"),
-			password: utils.parse(utils.skrillec_config(), "MySQL", "password"),
+			password: utils.get_sqlpw()
 			dbname: utils.parse(utils.skrillec_config(), "MySQL", "dbname"),
 		}
 		exit_c, table_c := crud.row_counter(mut sql, "users")
