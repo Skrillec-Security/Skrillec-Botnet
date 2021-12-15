@@ -71,6 +71,8 @@ pub fn (mut s Server) connection_handler(mut socket net.TcpConn) {
 	mut user_ip := socket.peer_addr() or { return }
 	mut fixed_ip := "$user_ip".split("]:")[0].replace("[::ffff:", "")
 	mut fixed_port := "$user_ip".split("]:")[1]
+	mut cursor_p := utils.parse((os.read_file(os.getwd() + "/assets/config.skrillec") or { "" }), "Hostname", "cli_cursor").split(",")
+
 	utils.change_title(mut socket, "Official Skrillec NET | Under **Development**")
 	print("New User Connected!: ${fixed_ip}:${fixed_port}\r\n")
 	mut start_current := server.Current{}
@@ -104,6 +106,8 @@ pub fn (mut s Server) connection_handler(mut socket net.TcpConn) {
 		}
 	}
 	utils.output_ui(mut socket, "")
+	time.sleep(300*time.millisecond)
+	utils.place_text(mut socket, cursor_p[0].int(), cursor_p[1].int(), "")
 	server.cmd_handler(mut socket, mut &s, mut &start_current)
 }
 
