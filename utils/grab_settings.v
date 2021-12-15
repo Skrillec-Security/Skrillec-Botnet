@@ -32,3 +32,12 @@ pub fn grab_cnc_token() string {
 pub fn hostname_settings() (int, []string) {
 	return 0, ["", ""]
 }
+
+pub fn get_sqlpw() string {
+	for i, flag in os.args.clone() {
+		if flag == "-sqlpw" {
+			return os.args[i+1]
+		}
+	}
+	return ""
+}
