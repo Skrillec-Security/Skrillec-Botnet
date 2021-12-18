@@ -83,9 +83,9 @@ pub fn cmd_handler(mut socket net.TcpConn, mut svr server.Server, mut c Current)
 					}
 				} else {
 					time.sleep(500*time.millisecond)
-					check_command := file_external_command(mut &socket, mut &svr, mut &c);
+					check_command := file_external_command(mut &socket, mut &svr, mut &c)
 					if check_command == 1 { command_found = true }
-					if command_found = true {
+					if command_found == true {
 						utils.place_text(mut socket, output_p[0].int(), output_p[1].int(), "Command not found!\r\n")
 					}
 				}
@@ -102,8 +102,8 @@ pub fn file_external_command(mut socket net.TcpConn, mut svr server.Server, mut 
 	mut files := os.ls(os.getwd() + "/assets/commands/") or { [""] }
 	for i, file in files {
 		if file == ".scmd" {
-			return 1
 			server.operate_cmd(file, mut socket, mut &svr, mut &c)
+			return 1
 		}
 	}
 	return 0
