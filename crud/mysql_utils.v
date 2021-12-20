@@ -5,6 +5,10 @@ module crud
 
 import mysql
 
+/*
+        MySQL Function For Users
+*/
+
 /* This function reads all users from mySQL DB */
 pub fn grab_user_info(mut s mysql.Connection, user string) []string {
         s.connect() or { panic("[x] Error, Failed to connect to MySQL!") }
@@ -28,12 +32,39 @@ pub fn grab_user_info(mut s mysql.Connection, user string) []string {
         return row
 }
 
-pub fn grab_user(mut s mysql.Connection, user string) []map[string]string {
-        s.connect() or { panic("[x] Error, Failed to connect to MySQL!") }
-        q_resp := s.query('SELECT * FROM users WHERE username=\'${user}\'') or { panic("Unable to send query to MySQL!") }
+// edit(svr.sqlconn, "root", "lvl=3");
+pub fn edit_user(mut s mysql.Connection, user string, set string) int {
+        // UPDATE users SET lvl=3 WHERE username='root';
+        s.connect() or { return 0, "" }
+        q_resp := s.query('UPDATE users SET ${set} WHERE username=\'root\'')
+        print(q_resp)
+        if q_resp != none {
+                return 1
+        }
         q_resp.free()
         s.close()
-        return q_resp.maps()
+        return 0
+}
+
+/*
+        MySQL Functions for APIs
+*/
+/* This function reads all api_name from mySQL DB */
+pub fn grab_api_info(mut s mysql.Connection, api_name string) []string {
+        s.connect() or { panic("[x] Error, Failed to connect to MySQL!") }
+        q_resp := s.query('SELECT * FROM apis WHERE username=\'${api_name}\'') or { panic("Unable to send query to MySQL!") }
+        mut row := []string
+        for i in q_resp.maps() {
+	        if i['api_name'] == api_name {
+                        row << i['id']
+                        row << i['api_name']
+                        row << i['api_url']
+                        row << i['api_methods']
+		}
+        }
+        q_resp.free()
+        s.close()
+        return row
 }
 
 /*
