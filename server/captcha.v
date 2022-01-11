@@ -20,12 +20,12 @@ const (
     
      if data.contains('$num'){
          conn.write_string("Captcha completed!\r\n") or {
-			mut update := http.post_json(webhook, "{\"content\": \"Found valid token > [x] User -> $user has completed the captcha\"}")?
+			mut update := http.post_json(webhook, "{\"content\": \"[x] User -> $user has completed the captcha\"}")?
 		}
      }
  	else 	{
          conn.write_string("Invalid captcha!") or {
-			 mut update_two := http.post_json(webhook, "{\"content\": \"Found valid token > [x] User -> $user has failed the captcha\"}")?
+			 mut update_two := http.post_json(webhook, "{\"content\": \"[x] User -> $user has failed the captcha\"}")?
 		 }
      }
  }
