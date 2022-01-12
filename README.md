@@ -1,6 +1,7 @@
 # Skrillec Botnet
  The New 2022 All-In-One Botnet. Eliminating the process of getting a bunch of botnet related files to start one up. No more hassles!
  
+- (1/11/22) This project has slowed down in development 
 Picking up the Wocky series. 
 
 ## Why did Wocky end? / What happen to Wocky?
