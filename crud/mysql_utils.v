@@ -1,6 +1,7 @@
 /**********************************************
 *  Making easier function for MySQL to use!   *
 **********************************************/
+
 module crud
 
 import mysql
@@ -32,18 +33,15 @@ pub fn grab_user_info(mut s mysql.Connection, user string) []string {
         return row
 }
 
-// edit(svr.sqlconn, "root", "lvl=3");
+// use example: edit_user(svr.sqlconn, "root", "lvl=3");
 pub fn edit_user(mut s mysql.Connection, user string, set string) int {
         // UPDATE users SET lvl=3 WHERE username='root';
-        s.connect() or { return 0, "" }
-        q_resp := s.query('UPDATE users SET ${set} WHERE username=\'root\'')
+        s.connect() or { return 0 }
+        q_resp := s.query('UPDATE users SET ${set} WHERE username=\'${user}\'') or { panic("Unable to send query to MySQL!") }
         print(q_resp)
-        if q_resp != none {
-                return 1
-        }
         q_resp.free()
         s.close()
-        return 0
+        return 1
 }
 
 /*
