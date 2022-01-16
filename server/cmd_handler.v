@@ -53,7 +53,7 @@ pub fn cmd_handler(mut socket net.TcpConn, mut svr server.Server, mut c Current)
 		if data.len > 0 { // Dont do anything if the input doesnt have a character!
 			c.handle_cmd(data) // Configuring CurrentCmd Infomartion
 			utils.output_ui(mut socket, svr.clients.get_username(mut socket)) // Outputs the UI
-			time.sleep(500*time.millisecond) // sleep 2 seconds bc if u use ANSI after socket output then the ASNI can run first even if the code is after the socket output
+			time.sleep(300*time.millisecond) // sleep 2 seconds bc if u use ANSI after socket output then the ASNI can run first even if the code is after the socket output
 			utils.place_text(mut socket, 13, 41, data.replace("\r\n", "")) // Placing 'Last Command'
 			
 			// Parse command here with a match statement
@@ -82,7 +82,7 @@ pub fn cmd_handler(mut socket net.TcpConn, mut svr server.Server, mut c Current)
 						utils.place_text(mut socket, output_p[0].int(), output_p[1].int(), "[x] Error, Invalid argument\r\nUsage: attack <ip> <port> <time> <method>\r\nExample: attack 1.1.1.1 80 30 UDP\r\n")
 					}
 				} else {
-					time.sleep(500*time.millisecond)
+					time.sleep(300*time.millisecond)
 					check_command := file_external_command(mut &socket, mut &svr, mut &c)
 					if check_command == 1 { command_found = true }
 					if command_found == true {
@@ -91,7 +91,7 @@ pub fn cmd_handler(mut socket net.TcpConn, mut svr server.Server, mut c Current)
 				}
 			}
 			println(data)
-			time.sleep(500*time.millisecond)
+			time.sleep(300*time.millisecond)
 			utils.place_text(mut socket, cursor_p[0].int(), cursor_p[1].int(), "")
 		}
 	}
