@@ -1,6 +1,7 @@
-╔════════════╦═════════════════╗
-║ passwd     ║ Change password ║
-║ attack     ║ Do a attack     ║
-║ methods    ║ Shows methods   ║
-║ cls        ║ Clear screen    ║
-╚════════════╩═════════════════╝
+place_text(12,29)= Tools                   Description                     
+place_text(13,29)=═════════════════════════════════════════════════════════
+place_text()= help basic              List of commands                
+place_text()= help acc                Account Settings                
+place_text()= help tools              IP/URL Network Tools            
+place_text()= help stresser           Stresser Hub                    
+place_text()= about                   About Skrillec NET              
