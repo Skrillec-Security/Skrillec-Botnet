@@ -77,8 +77,8 @@ pub fn (mut s Server) connection_handler(mut socket net.TcpConn) {
 	print("New User Connected!: ${fixed_ip}:${fixed_port}\r\n")
 	mut start_current := server.Current{}
 	//Add captcha here to avoid bot logins or other things
-	/*
-		Captcha shit here
+    /*
+		Captcha shi there
 	*/
     // server.captcha(mut socket)
 	//Add login here then log the user's username, IP, and detect if user is using the Skrillec CLIENT to connect
