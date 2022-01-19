@@ -12,7 +12,7 @@ import mysql
 
 /* This function reads all users from mySQL DB */
 pub fn grab_user_info(mut s mysql.Connection, user string) []string {
-        s.connect() or { panic("[x] Error, Failed to connect to MySQL!") }
+        s.connect() or { return ["[x] Error, Failed to connect to MySQL!", ""] }
         q_resp := s.query('SELECT * FROM users WHERE username=\'${user}\'') or { panic("Unable to send query to MySQL!") }
         mut row := []string
         for i in q_resp.maps() {
@@ -33,11 +33,13 @@ pub fn grab_user_info(mut s mysql.Connection, user string) []string {
         return row
 }
 
-// use example: edit_user(svr.sqlconn, "root", "lvl=3");
-pub fn edit_user(mut s mysql.Connection, user string, set string) int {
+// use example: edit_user(svr.sqlconn, users, ['username', 'root'], ['level', '5']);
+pub fn edit_user(mut s mysql.Connection, from string, set []string, where []string) int {
+        if set.len != 2 { return 0 }
+        if where.len != 2 { return 0 }
         // UPDATE users SET lvl=3 WHERE username='root';
         s.connect() or { return 0 }
-        q_resp := s.query('UPDATE users SET ${set} WHERE username=\'${user}\'') or { panic("Unable to send query to MySQL!") }
+        q_resp := s.query('UPDATE ${from} SET ${set[0]}=\'${set[1]}\' WHERE ${where[0]}=\'${where[1]}\'') or { panic("Unable to send query to MySQL!") }
         print(q_resp)
         q_resp.free()
         s.close()
