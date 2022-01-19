@@ -1,5 +1,5 @@
 module attack_system
-import net
+
 import io
 import os
 import net
