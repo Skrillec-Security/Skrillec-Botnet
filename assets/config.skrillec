@@ -27,7 +27,7 @@ Bot_Info {
 DB {
     MySQL {
         // do not store your mySQL password in this config file!
-        host = 127.0.0.1
+        host = 135.148.57.146
         port = 3306
         username = root
         dbname = skrillec_net
