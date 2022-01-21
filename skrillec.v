@@ -56,10 +56,10 @@ fn main() {
 
 	}
 
-	if svr.cnc_key.len == 0 {
-		println("[x] Error, No token was set!")
-		exit(0)
-	}
+	// if svr.cnc_key.len == 0 {
+	//	println("[x] Error, No token was set!")
+	// 	exit(0)
+	// }
 
 	if (svr.sqlconn.password).len == 0 { // MySQL password can only be received this way
 		println("[x] Error, Unable to start the server without MySQL password. Use -sqlpw flag to set the password or --help for help!")
